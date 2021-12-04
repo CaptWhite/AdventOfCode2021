@@ -1,0 +1,67 @@
+--- Día 2: ¡Bucear! ---
+Ahora, necesitas descubrir cómo pilotar esta cosa.
+
+Parece que el submarino puede tomar una serie de comandos como avanzar 1, bajar 2 o subir 3:
+
+adelante X aumenta la posición horizontal en X unidades.
+abajo X aumenta la profundidad en X unidades.
+up X disminuye la profundidad en X unidades.
+Tenga en cuenta que, dado que está en un submarino, subir y bajar afectan su profundidad, 
+por lo que tienen el resultado opuesto de lo que podría esperar.
+
+Parece que el submarino ya tiene un rumbo planificado (tu entrada del rompecabezas). 
+Probablemente debería averiguar hacia dónde se dirige. Por ejemplo:
+
+adelante 5
+abajo 5
+adelante 8
+arriba 3
+abajo 8
+adelante 2
+
+Su posición horizontal y profundidad comienzan en 0. Los pasos anteriores los modificarían de la siguiente manera:
+
+adelante 5 suma 5 a su posición horizontal, un total de 5.
+abajo 5 agrega 5 a su profundidad, lo que resulta en un valor de 5.
+adelante 8 suma 8 a su posición horizontal, un total de 13.
+arriba 3 disminuye la profundidad en 3, lo que da como resultado un valor de 2.
+abajo 8 agrega 8 a su profundidad, lo que resulta en un valor de 10.
+adelante 2 suma 2 a su posición horizontal, un total de 15.
+Después de seguir estas instrucciones, tendrías una posición horizontal de 15 y una profundidad de 10. 
+(Multiplicarlos juntos produce 150).
+
+Calcula la posición horizontal y la profundidad que tendrías después de seguir el rumbo planificado. 
+¿Qué obtienes si multiplicas tu posición horizontal final por tu profundidad final?
+
+
+--- La segunda parte ---
+Según sus cálculos, el curso planeado no parece tener ningún sentido. Encuentra el manual del submarino 
+y descubre que el proceso es en realidad un poco más complicado.
+
+Además de la posición horizontal y la profundidad, también deberá realizar un seguimiento de un tercer 
+valor, el objetivo, que también comienza en 0. Los comandos también significan algo completamente 
+diferente de lo que pensó al principio:
+
+- abajo X aumenta tu ritmo en X unidades.
+- arriba X disminuye tu ritmo en X unidades.
+- adelante X hace dos cosas:
+    - Aumenta su posición horizontal en X unidades.
+    - Aumenta tu profundidad por tu ritmo multiplicada por X.
+Una vez más, tenga en cuenta que, dado que está en un submarino, subir y bajar hacen lo contrario de lo que 
+podría esperar: "abajo" significa apuntar en la dirección positiva.
+
+Ahora, el ejemplo anterior hace algo diferente:
+
+adelante 5 suma 5 a su posición horizontal, un total de 5. Debido a que su objetivo es 0, su profundidad no cambia.
+abajo 5    suma 5 a tu objetivo, lo que da como resultado un valor de 5.
+adelante 8 suma 8 a su posición horizontal, un total de 13. Como su objetivo es 5, su profundidad aumenta en 8 * 5 = 40.
+arriba 3   disminuye tu ritmo en 3, lo que da como resultado un valor de 2.
+abajo 8    suma 8 a su objetivo, lo que da como resultado un valor de 10.
+adelante 2 suma 2 a tu posición horizontal, un total de 15. Como tu objetivo es 10, tu profundidad aumenta en 2 * 10 = 20 hasta un total de 60.
+
+Después de seguir estas nuevas instrucciones, tendrías una posición horizontal de 15 y una profundidad de 
+60 (multiplicar estas produce 900).
+
+Con esta nueva interpretación de los comandos, calcule la posición horizontal y la profundidad que tendría 
+después de seguir el rumbo planificado. 
+¿Qué obtienes si multiplicas tu posición horizontal final por tu profundidad final?
