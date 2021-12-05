@@ -1,0 +1,78 @@
+--- Día 5: Aventura hidrotermal ---
+¡Te encuentras con un campo de respiraderos hidrotermales en el fondo del océano! Estos respiraderos producen 
+constantemente nubes grandes y opacas, por lo que sería mejor evitarlos si es posible.
+
+Tienden a formarse en filas; el submarino produce amablemente una lista de líneas de ventilación cercanas 
+(su entrada de rompecabezas) para que usted la revise. Por ejemplo:
+
+0,9 -> 5,9
+8,0 -> 0,8
+9,4 -> 3,4
+2,2 -> 2,1
+7,0 -> 7,4
+6,4 -> 2,0
+0,9 -> 2,9
+3,4 -> 1,4
+0,0 -> 8,8
+5,5 -> 8,2
+
+Cada línea de ventilación se da como un segmento de línea en el formato x1,y1 -> x2,y2 donde x1,y1 
+son las coordenadas de un extremo del segmento de línea y x2,y2 son las coordenadas del otro extremo. 
+Estos segmentos de línea incluyen los puntos en ambos extremos. En otras palabras:
+
+Una entrada como 1,1 -> 1,3 cubre los puntos 1,1, 1,2 y 1,3.
+Una entrada como 9,7 -> 7,7 cubre los puntos 9,7, 8,7 y 7,7.
+Por ahora, solo considere las líneas horizontales y verticales: líneas donde x1=x2 o y1=y2.
+
+Entonces, las líneas horizontales y verticales de la lista anterior producirían el siguiente diagrama:
+
+.......1..
+..1....1..
+..1....1..
+.......1..
+.112111211
+..........
+..........
+..........
+..........
+222111....
+
+En este diagrama, la esquina superior izquierda es 0,0 y la esquina inferior derecha es 9,9. 
+Cada posición se muestra como el número de líneas que cubren ese punto o '.' si ninguna línea cubre ese punto. 
+El par superior izquierdo de unos, por ejemplo, proviene de 2,2 -> 2,1; la misma fila inferior está 
+formada por las líneas superpuestas 0,9 -> 5,9 y 0,9 -> 2,9.
+
+Para evitar las áreas más peligrosas, debe determinar el número de puntos donde se superponen al menos 
+dos líneas. En el ejemplo anterior, se encuentra en cualquier parte del diagrama con un 2 o más, 
+un total de 5 puntos.
+
+Considere solo líneas horizontales y verticales. ¿En cuántos puntos se superponen al menos dos líneas?
+
+
+--- La segunda parte ---
+
+Desafortunadamente, considerar solo las líneas horizontales y verticales no le da una imagen completa; 
+también debe considerar las líneas diagonales.
+
+Debido a los límites del sistema de mapeo de respiraderos hidrotermales, las líneas en su lista solo 
+serán horizontales, verticales o diagonales a exactamente 45 grados. En otras palabras:
+
+Una entrada como 1,1 -> 3,3 cubre los puntos 1,1, 2,2 y 3,3.
+Una entrada como 9,7 -> 7,9 cubre los puntos 9,7, 8,8 y 7,9.
+Teniendo en cuenta todas las líneas del ejemplo anterior, ahora se produciría el siguiente diagrama:
+
+1.1....11.
+.111...2..
+..2.1.111.
+...1.2.2..
+.112313211
+...1.2....
+..1...1...
+.1.....1..
+1.......1.
+222111....
+
+Aún debe determinar el número de puntos donde se superponen al menos dos líneas. En el ejemplo anterior, 
+todavía se encuentra en cualquier parte del diagrama con un 2 o más, ahora un total de 12 puntos.
+
+Considere todas las líneas. ¿En cuántos puntos se superponen al menos dos líneas?
