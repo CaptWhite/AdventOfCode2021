@@ -1,133 +1,111 @@
-Día 13: Búsqueda de lanzadera
-Su ferry puede llegar de manera segura a un puerto cercano, pero no llegará mucho más lejos. Cuando llama para reservar otro 
-barco, descubre que ningún barco se embarca desde ese puerto hacia su isla de vacaciones. Deberá ir del puerto al aeropuerto 
-más cercano.
+--- Día 1: Barrido de sonda ---
+¡Está ocupándose de sus propios asuntos en un barco en el mar cuando suena la alarma de mar! Te apresuras a 
+ver si puedes ayudar. ¡Aparentemente, uno de los Elfos tropezó y accidentalmente envió las llaves del trineo 
+volando al océano!
 
-Afortunadamente, hay un servicio de autobús de enlace disponible para llevarlo desde el puerto marítimo hasta el aeropuerto. 
-Cada autobús tiene un número de identificación que también indica con qué frecuencia sale el autobús hacia el aeropuerto.
+Antes de que te des cuenta, estás dentro de un submarino que los Elfos mantienen preparados para situaciones 
+como esta. Está cubierto de luces navideñas (porque por supuesto que lo está), e incluso tiene una antena 
+experimental que debería poder rastrear las teclas si puedes aumentar la intensidad de la señal lo suficiente; 
+hay un pequeño medidor que indica la fuerza de la señal de la antena mostrando 0-50 estrellas.
 
-Los horarios de los autobuses se definen en función de una marca de tiempo que mide la cantidad de minutos desde algún punto 
-de referencia fijo en el pasado. En la marca de tiempo 0, todos los autobuses partieron simultáneamente del puerto marítimo. 
-Después de eso, cada autobús viaja al aeropuerto, luego a otros lugares y finalmente regresa al puerto marítimo para repetir 
-su viaje para siempre.
+Tus instintos te dicen que para salvar la Navidad, necesitarás obtener las cincuenta estrellas antes del 25 de 
+diciembre.
 
-El tiempo que tarda este bucle en un autobús en particular también es su número de identificación: el autobús con ID 5 sale 
-del puerto marítimo en las marcas de tiempo 0, 5, 10, 15, etc. El autobús con ID 11 sale a las 0, 11, 22, 33, etc. Si está 
-allí cuando sale el autobús, ¡puede viajar en ese autobús hasta el aeropuerto!
+Recoge estrellas resolviendo acertijos. Dos rompecabezas estarán disponibles cada día en el calendario de 
+Adviento; el segundo rompecabezas se desbloquea cuando completa el primero. Cada rompecabezas otorga una estrella.
+ ¡Buena suerte!
 
-Sus notas (su entrada de rompecabezas) constan de dos líneas. La primera línea es su estimación de la primera marca de tiempo 
-en la que podría salir en un autobús. La segunda línea enumera las identificaciones de los autobuses que están en servicio 
-según la empresa de transporte; las entradas que muestran x deben estar fuera de servicio, por lo que decide ignorarlas.
+Cuando el submarino cae por debajo de la superficie del océano, automáticamente realiza un barrido de sonar del
+ fondo marino cercano. En una pantalla pequeña, aparece el informe de barrido de la sonda (la entrada del
+  rompecabezas): cada línea es una medida de la profundidad del fondo del mar a medida que el barrido se ve 
+  cada vez más lejos del submarino.
 
-Para ahorrar tiempo una vez que llegue, su objetivo es averiguar cuál es el primer autobús que puede tomar al aeropuerto. 
-(Habrá exactamente uno de esos autobuses).
+Por ejemplo, suponga que tiene el siguiente informe:
 
-Por ejemplo, suponga que tiene las siguientes notas:
+199
+200
+208
+210
+200
+207
+240
+269
+260
+263
 
-939
-7,13, x, x, 59, x, 31,19
-Aquí, la marca de tiempo más temprana que puede salir es 939, y los ID de autobús en servicio son 7, 13, 59, 31 y 19. Cerca 
-de la marca de tiempo 939, estos ID de autobús salen en los horarios marcados con D:
+Este informe indica que, escaneando hacia afuera desde el submarino, el barrido del sonar encontró profundidades 
+de 199, 200, 208, 210, etc.
 
-tiempo autobús 7 autobús 13 autobús 59 autobús 31 autobús 19
+La primera orden del día es averiguar qué tan rápido aumenta la profundidad, solo para que sepa con qué está 
+lidiando: nunca se sabe si las llaves serán llevadas a aguas más profundas por una corriente oceánica o un pez 
+o algo así.
 
-929. . . . .
-930. . . D       .
-931 D. . . D
-932. . . . .
-933. . . . .
-934. . . . .
-935. . . . .
-936. D       . . .
-937. . . . .
-938 D. . . .
-939. . . . .
-940. . . . .
-941. . . . .
-942. . . . .
-943. . . . .
-944. . D       . .
-945 D. . . .
-946. . . . .
-947. . . . .
-948. . . . .
-949. D       . . .
+Para hacer esto, cuente el número de veces que una medición de profundidad aumenta con respecto a la medición 
+anterior. (No hay ninguna medición antes de la primera medición). En el ejemplo anterior, los cambios son los 
+siguientes:
 
-El primer autobús que puede tomar es el bus ID 59. No sale hasta la marca de tiempo 944, por lo que deberá esperar 
-944 - 939 = 5 minutos antes de que salga. Multiplicar la identificación del autobús por la cantidad de minutos que 
-necesitaría esperar da 295.
+199 (N / A - sin medición previa)
+200 (aumentado)
+208 (aumentado)
+210 (aumentado)
+200 (disminuido)
+207 (aumentado)
+240 (aumentado)
+269 ​​(aumentado)
+260 (disminuido)
+263 (aumentado)
 
-¿Cuál es la identificación del primer autobús que puede tomar al aeropuerto multiplicado por la cantidad de minutos que 
-tendrá que esperar por ese autobús?
+En este ejemplo, hay 7 medidas que son más grandes que la medida anterior.
 
-Tu respuesta al acertijo fue 174.
+¿Cuántas medidas son más grandes que la medida anterior?
 
-La segunda parte
-La compañía de transporte está organizando un concurso: una moneda de oro para cualquier persona que pueda encontrar la 
-marca de tiempo más temprana, de modo que el primer ID de autobús salga en ese momento y cada ID de autobús enumerado 
-subsiguiente salga en ese minuto posterior. (La primera línea de su entrada ya no es relevante).
+Tu respuesta al acertijo fue 1400.
 
-Por ejemplo, suponga que tiene la misma lista de ID de bus que la anterior:
+--- La segunda parte ---
+Tener en cuenta que cada medición no es tan útil como esperaba: hay demasiado ruido en los datos.
 
-7,13, x, x, 59, x, 31,19
-Una x en el horario significa que no hay restricciones sobre qué ID de bus deben salir en ese momento.
+En su lugar, considere las sumas de una ventana deslizante de tres medidas. Nuevamente considerando 
+el ejemplo anterior:
 
-Esto significa que está buscando la marca de tiempo más antigua (llamada t) tal que:
+199 A
+200 A B
+208 A B C
+210 B C D
+200 E C D
+207 E F D
+240 E F G
+269 ​​F G H
+260 G H
+263 H
 
-El bus ID 7 sale en la marca de tiempo t.
-El bus ID 13 sale un minuto después de la marca de tiempo t.
-No hay requisitos ni restricciones para las salidas dos o tres minutos después de la marca de tiempo t.
-El bus ID 59 sale cuatro minutos después de la marca de tiempo t.
-No hay requisitos ni restricciones para las salidas cinco minutos después de la marca de tiempo t.
-El bus ID 31 sale seis minutos después de la marca de tiempo t.
-El bus ID 19 sale siete minutos después de la marca de tiempo t.
+Comience comparando la primera y la segunda ventana de tres mediciones. Las medidas en la primera ventana 
+están marcadas con A (199, 200, 208); su suma es 199 + 200 + 208 = 607. La segunda ventana está marcada 
+como B (200, 208, 210); su suma es 618. La suma de las medidas en la segunda ventana es mayor que la suma 
+de la primera, por lo que esta primera comparación aumentó.
 
-Las únicas salidas de autobús que importan son los ID de autobús enumerados en sus desplazamientos específicos de t. 
-Esos ID de autobús pueden salir en otros horarios y otros ID de autobús pueden salir en esos horarios. Por ejemplo, 
-en la lista anterior, debido a que el bus ID 19 debe salir siete minutos después de la marca de tiempo en la que sale 
-el bus ID 7, el bus ID 7 siempre también saldrá con el bus ID 19 siete minutos después de la marca de tiempo t.
+Su objetivo ahora es contar el número de veces que la suma de medidas en esta ventana deslizante aumenta 
+con respecto a la suma anterior. Entonces, compare A con B, luego compare B con C, luego C con D, y así 
+sucesivamente. Deténgase cuando no queden suficientes medidas para crear una nueva suma de tres medidas.
 
-En este ejemplo, la primera marca de tiempo en la que esto ocurre es 1068781:
+En el ejemplo anterior, la suma de cada ventana de tres medidas es la siguiente:
 
-time     bus 7   bus 13  bus 59  bus 31  bus 19
-1068773    .       .       .       .       .
-1068774    D       .       .       .       .
-1068775    .       .       .       .       .
-1068776    .       .       .       .       .
-1068777    .       .       .       .       .
-1068778    .       .       .       .       .
-1068779    .       .       .       .       .
-1068780    .       .       .       .       .
-1068781    D       .       .       .       .
-1068782    .       D       .       .       .
-1068783    .       .       .       .       .
-1068784    .       .       .       .       .
-1068785    .       .       D       .       .
-1068786    .       .       .       .       .
-1068787    .       .       .       D       .
-1068788    D       .       .       .       D
-1068789    .       .       .       .       .
-1068790    .       .       .       .       .
-1068791    .       .       .       .       .
-1068792    .       .       .       .       .
-1068793    .       .       .       .       .
-1068794    .       .       .       .       .
-1068795    D       D       .       .       .
-1068796    .       .       .       .       .
-1068797    .       .       .       .       .
-En el ejemplo anterior, el bus ID 7 sale en la marca de tiempo 1068788 (siete minutos después de t). Esto esta bien; 
-el único requisito en ese minuto es que el bus ID 19 salga entonces, y lo hace.
+A: 607 (N / A - sin suma previa)
+B: 618 (aumentado)
+C: 618 (sin cambios)
+D: 617 (disminuido)
+E: 647 (aumentado)
+F: 716 (aumentado)
+G: 769 (aumentado)
+H: 792 (aumentado)
 
-A continuación se muestran algunos otros ejemplos:
+En este ejemplo, hay 5 sumas que son mayores que la suma anterior.
 
-La marca de tiempo más antigua que coincide con la lista 17, x, 13,19 es 3417.
-67,7,59,61 aparece primero en la marca de tiempo 754018.
-67, x, 7,59,61 aparece por primera vez en la marca de tiempo 779210.
-67,7, x, 59,61 aparece por primera vez en la marca de tiempo 1261476.
-1789,37,47,1889 aparece por primera vez en la marca de tiempo 1202161486.
-Sin embargo, con tantos ID de bus en su lista, seguramente la marca de tiempo más antigua real será mayor que 100000000000000.
+Considere las sumas de una ventana deslizante de tres medidas. ¿Cuántas sumas son mayores que la suma anterior?
 
-¿Cuál es la marca de tiempo más temprana de modo que todos los ID de autobús enumerados parten en desplazamientos que 
-coinciden con sus posiciones en la lista?
+Tu respuesta al acertijo fue 1429.
 
-Su respuesta al acertijo fue 780601154795940.
+¡Ambas partes de este rompecabezas están completas! Proporcionan dos estrellas doradas: **
+
+En este punto, debes volver a tu calendario de Adviento y probar con otro acertijo.
+
+Si aún desea verlo, puede obtener la entrada de su rompecabezas.

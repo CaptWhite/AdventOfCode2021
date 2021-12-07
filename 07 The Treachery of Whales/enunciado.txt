@@ -1,0 +1,77 @@
+--- Día 7: La traición de las ballenas ---
+
+Una ballena gigante ha decidido que su submarino es su próxima comida, y es mucho más rápido que usted. 
+¡No hay adónde correr!
+
+De repente, un enjambre de cangrejos (cada uno en su propio submarino diminuto; de lo contrario, es demasiado
+profundo para ellos) se acerca para rescatarte. Parece que se están preparando para hacer un agujero en el 
+fondo del océano; Los sensores indican un enorme sistema de cuevas subterráneas justo más allá de donde 
+apuntan.
+
+Todos los submarinos cangrejo deben estar alineados antes de que tengan el poder suficiente para abrir un 
+agujero lo suficientemente grande para que su submarino lo atraviese. Sin embargo, ¡no parece que estén 
+alineados antes de que la ballena te atrape! ¿Quizás puedas ayudar?
+
+Hay una trampa importante: los submarinos cangrejo solo pueden moverse horizontalmente.
+
+Rápidamente haces una lista de la posición horizontal de cada cangrejo (tu entrada del rompecabezas). 
+Los submarinos cangrejo tienen combustible limitado, por lo que debe encontrar una manera de hacer que todas 
+sus posiciones horizontales coincidan y, al mismo tiempo, requerir que gasten la menor cantidad de 
+combustible posible.
+
+Por ejemplo, considere las siguientes posiciones horizontales:
+
+16,1,2,0,4,2,7,1,2,14
+
+Esto significa que hay un cangrejo con la posición horizontal 16, un cangrejo con la posición horizontal 1, 
+y así sucesivamente.
+
+Cada cambio de 1 paso en la posición horizontal de un solo cangrejo cuesta 1 combustible. Puede elegir 
+cualquier posición horizontal para alinearlos todos, pero la que cuesta menos combustible es la posición 
+horizontal 2:
+
+Pasar de 16 a 2:14 combustible
+Pasar de combustible 1 a 2: 1
+Pasar de combustible 2 a 2: 0
+Pasar de combustible 0 a 2: 2
+Pasar de combustible 4 a 2: 2
+Pasar de combustible 2 a 2: 0
+Pasar de combustible 7 a 2: 5
+Pasar de combustible 1 a 2: 1
+Pasar de combustible 2 a 2: 0
+Pasar de 14 a 2:12 de combustible
+Esto cuesta un total de 37 combustible. Este es el resultado más económico posible; Los resultados más 
+costosos incluyen la alineación en la posición 1 (combustible 41), la posición 3 (combustible 39) o la 
+posición 10 (combustible 71).
+
+Determina la posición horizontal en la que los cangrejos pueden alinearse usando la menor cantidad de 
+combustible posible. ¿Cuánto combustible deben gastar para alinearse en esa posición?
+
+Para empezar, te atrapo
+
+--- La segunda parte ---
+Los cangrejos no parecen interesados ​​en la solución propuesta. ¿Quizás no entiende la ingeniería del cangrejo?
+
+Resulta que los motores de los submarinos cangrejo no queman combustible a un ritmo constante. En cambio, cada 
+cambio de 1 paso en la posición horizontal cuesta 1 unidad más de combustible que el último: el primer paso 
+cuesta 1, el segundo paso 2, el tercer paso 3, y así sucesivamente.
+
+A medida que cada cangrejo se mueve, moverse más lejos se vuelve más costoso. Esto cambia la mejor posición 
+horizontal para alinearlos todos; en el ejemplo anterior, esto se convierte en 5:
+
+Pasar de 16 a 5: 66 combustible
+Pasar de  1 a 5: 10 combustible
+Pasar de  2 a 5:  6 combustible
+Pasar de  0 a 5: 15 combustible
+Pasar de  4 a 5:  1 combustible
+Pasar de  2 a 5:  6 combustible
+Pasar de  7 a 5:  3 combustible
+Pasar de  1 a 5: 10 combustible
+Pasar de  2 a 5:  6 combustible
+Pasar de 14 a 5: 45 combustible
+Esto cuesta un total de 168 combustible. Este es el nuevo resultado más económico posible; la posición de 
+alineación anterior (2) ahora cuesta 206 combustible en su lugar.
+
+¡Determina la posición horizontal en la que los cangrejos pueden alinearse usando la menor cantidad de 
+combustible posible para que puedan convertirte en una ruta de escape! ¿Cuánto combustible deben gastar 
+para alinearse en esa posición?
