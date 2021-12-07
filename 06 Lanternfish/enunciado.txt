@@ -1,0 +1,65 @@
+--- Día 6: pez linterna ---
+El fondo del mar es cada vez más empinado. ¿Quizás las llaves del trineo se llevaron de esta manera?
+
+Un enorme banco de peces linterna resplandecientes pasa nadando. Deben engendrar rápidamente para alcanzar 
+números tan grandes, ¿tal vez exponencialmente rápido? Debe modelar su tasa de crecimiento para estar seguro.
+
+Aunque no sabe nada sobre esta especie específica de pez linterna, hace algunas conjeturas sobre sus atributos. 
+Seguramente, cada pez linterna crea un nuevo pez linterna una vez cada 7 días.
+
+Sin embargo, este proceso no está necesariamente sincronizado entre cada pez linterna: a un pez linterna 
+le quedan 2 días hasta que cree otro pez linterna, mientras que a otro le quedan 4. Por lo tanto, puede 
+modelar cada pez como un número único que representa la cantidad de días hasta crea un nuevo pez linterna.
+
+Además, razona, un nuevo pez linterna seguramente necesitaría un poco más de tiempo antes de que sea capaz 
+de producir más peces linterna: dos días más para su primer ciclo.
+
+Entonces, suponga que tiene un pez linterna con un valor de temporizador interno de 3:
+
+Después de un día, su temporizador interno se convertiría en 2.
+Después de otro día, su temporizador interno se convertiría en 1.
+Después de otro día, su temporizador interno se convertiría en 0.
+Después de otro día, su temporizador interno se restablecería a 6 y crearía un nuevo pez linterna con un 
+        temporizador interno de 8.
+Después de otro día, el primer pez linterna tendría un temporizador interno de 5 y el segundo pez linterna 
+        tendría un temporizador interno de 7.
+Un pez linterna que crea un nuevo pez restablece su temporizador a 6, no a 7 (porque 0 se incluye como un 
+        valor de temporizador válido). El nuevo pez linterna comienza con un temporizador interno de 8 y no 
+		comienza la cuenta regresiva hasta el día siguiente.
+
+Al darse cuenta de lo que está tratando de hacer, el submarino produce automáticamente una lista de las 
+edades de varios cientos de peces linterna cercanos (su entrada de rompecabezas). Por ejemplo, suponga 
+que le dieron la siguiente lista:
+
+3,4,3,1,2
+
+Esta lista significa que el primer pez tiene un temporizador interno de 3, el segundo pez tiene un 
+temporizador interno de 4, y así sucesivamente hasta el quinto pez, que tiene un temporizador interno 
+de 2. Simular estos peces durante varios días procedería de la siguiente manera :
+
+Estado inicial:     3,4,3,1,2
+Después de 1 día:   2,3,2,0,1
+Después de 2 días:  1,2,1,6,0,8
+Después de 3 días:  0,1,0,5,6,7,8
+Después de 4 días:  6,0,6,4,5,6,7,8,8
+Después de 5 días:  5,6,5,3,4,5,6,7,7,8
+Después de 6 días:  4,5,4,2,3,4,5,6,6,7
+Después de 7 días:  3,4,3,1,2,3,4,5,5,6
+Después de 8 días:  2,3,2,0,1,2,3,4,4,5
+Después de 9 días:  1,2,1,6,0,1,2,3,3,4,8
+Después de 10 días: 0,1,0,5,6,0,1,2,2,3,7,8
+Después de 11 días: 6,0,6,4,5,6,0,1,1,2,6,7,8,8,8
+Después de 12 días: 5,6,5,3,4,5,6,0,0,1,5,6,7,7,7,8,8
+Después de 13 días: 4,5,4,2,3,4,5,6,6,0,4,5,6,6,6,7,7,8,8
+Después de 14 días: 3,4,3,1,2,3,4,5,5,6,3,4,5,5,5,6,6,7,7,8
+Después de 15 días: 2,3,2,0,1,2,3,4,4,5,2,3,4,4,5,5,6,6,7
+Después de 16 días: 1,2,1,6,0,1,2,3,3,4,1,2,3,3,3,4,4,5,5,6,8
+Después de 17 días: 0,1,0,5,6,0,1,2,2,3,0,1,2,2,2,3,3,4,4,5,7,8
+Después de 18 días: 6,0,6,4,5,6,0,1,1,2,6,0,1,1,1,2,2,3,3,4,6,7,8,8,8,8
+
+Cada día, un 0 se convierte en un 6 y agrega un nuevo 8 al final de la lista, mientras que los demás 
+números disminuyen en 1 si estaban presentes al comienzo del día.
+
+En este ejemplo, después de 18 días, hay un total de 26 peces. Después de 80 días, habría un total de 5934.
+
+Encuentra una manera de simular un pez linterna. ¿Cuántos peces linterna habría después de 80 días?
