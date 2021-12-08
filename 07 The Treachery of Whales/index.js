@@ -30,5 +30,5 @@ const quiz = (parte) => {
     ;
 }
 
-console.log( 'Parte 1', quiz('part 1'));
-console.log( 'Parte 2', quiz('part 2'));
+console.log( 'Parte 1', quiz('part 1'));   // 343468
+console.log( 'Parte 2', quiz('part 2'));   // 96086265

@@ -7,10 +7,6 @@ const input = fs
   .readFileSync('./day6.txt', { encoding: 'utf-8' })
   .split(",")
 
-// Parte 1: numDias =  80
-// Parte 2: numDias = 256
-// const numDias = 80
-
 const quiz = (numDias) => {
   let initValue = 0
 
@@ -40,11 +36,10 @@ const quiz = (numDias) => {
     }
   )
 
-
   return calendar
     .map((digit, idx) => digit[numDias] * input.filter(x=>Number(x)===idx).reduce((a,b) => ++a, 0))
     .reduce((acum, rec) => acum + rec, 0);
 }
 
-console.log( 'Parte 1', quiz (80));
-console.log( 'Parte 2', quiz (256));
+console.log( 'Parte 1', quiz (80));      // 386755
+console.log( 'Parte 2', quiz (256));     // 1732731810807

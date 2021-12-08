@@ -1,0 +1,81 @@
+--- Día 8: Búsqueda de siete segmentos ---
+Apenas llegas a la seguridad de la cueva cuando la ballena se estrella contra la boca de la cueva, colapsando. Los sensores indican 
+otra salida a esta cueva a una profundidad mucho mayor, por lo que no tiene más remedio que seguir adelante.
+
+A medida que su submarino avanza lentamente a través del sistema de cuevas, se da cuenta de que las pantallas de cuatro dígitos
+ y siete segmentos de su submarino no funcionan correctamente; deben haber sido dañados durante la fuga. Te meterás en muchos 
+ problemas sin ellos, así que será mejor que averigües qué está mal.
+
+Cada dígito de una pantalla de siete segmentos se representa activando o desactivando cualquiera de los siete segmentos denominados
+ de la a a la g:
+
+ 0:      1:      2:      3:      4:
+ aaaa    ....    aaaa    aaaa    ....
+b    c  .    c  .    c  .    c  b    c
+b    c  .    c  .    c  .    c  b    c
+ ....    ....    dddd    dddd    dddd
+e    f  .    f  e    .  .    f  .    f
+e    f  .    f  e    .  .    f  .    f
+ gggg    ....    gggg    gggg    ....
+
+  5:      6:      7:      8:      9:
+ aaaa    aaaa    aaaa    aaaa    aaaa
+b    .  b    .  .    c  b    c  b    c
+b    .  b    .  .    c  b    c  b    c
+ dddd    dddd    ....    dddd    dddd
+.    f  e    f  .    f  e    f  .    f
+.    f  e    f  .    f  e    f  .    f
+ gggg    gggg    ....    gggg    gggg
+ 
+Entonces, para generar un 1, solo los segmentos cyf estarían activados; el resto estaría apagado. Para representar un 7, solo se 
+activarían los segmentos a, c y f.
+
+El problema es que las señales que controlan los segmentos se han mezclado en cada pantalla. El submarino todavía está tratando de 
+mostrar números produciendo una salida en los cables de señal a hasta g, pero esos cables están conectados a segmentos de forma 
+aleatoria. Peor aún, las conexiones de cable / segmento se mezclan por separado para cada pantalla de cuatro dígitos. (Sin embargo, 
+todos los dígitos dentro de una pantalla usan las mismas conexiones).
+
+Por lo tanto, es posible que sepa que solo los cables de señal byg están encendidos, pero eso no significa que los segmentos byg 
+estén encendidos: el único dígito que usa dos segmentos es 1, por lo que debe significar que los segmentos cyf están destinados 
+para estar en. Con solo esa información, todavía no puede saber qué cable (b / g) va a qué segmento (c / f). Para eso, necesitará 
+recopilar más información.
+
+Para cada pantalla, observa las señales cambiantes durante un tiempo, toma nota de los diez patrones de señal únicos que ve y 
+luego escribe un solo valor de salida de cuatro dígitos (su entrada de rompecabezas). Usando los patrones de señal, debería poder 
+determinar qué patrón corresponde a qué dígito.
+
+Por ejemplo, esto es lo que puede ver en una sola entrada en sus notas:
+
+acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
+
+(La entrada se ajusta aquí a dos líneas para que encaje; en sus notas, todo estará en una sola línea).
+
+Cada entrada consta de diez patrones de señal únicos, un | delimitador y, finalmente, el valor de salida de cuatro dígitos. 
+Dentro de una entrada, se utilizan las mismas conexiones de cable / segmento (pero no sabe cuáles son realmente las conexiones). 
+Los patrones de señal únicos corresponden a las diez formas diferentes en que el submarino intenta representar un dígito utilizando 
+las conexiones de cable / segmento actuales. Debido a que 7 es el único dígito que usa tres segmentos, dab en el ejemplo anterior 
+significa que para representar un 7, las líneas de señal d, ayb están encendidas. Debido a que 4 es el único dígito que usa cuatro 
+segmentos, eafb significa que para generar un 4, las líneas de señal e, a, f y b están encendidas.
+
+Con esta información, debería poder determinar qué combinación de cables de señal corresponde a cada uno de los diez dígitos. 
+Luego, puede decodificar el valor de salida de cuatro dígitos. Desafortunadamente, en el ejemplo anterior, todos los dígitos del 
+valor de salida (cdfeb fcadb cdfeb cdbaf) usan cinco segmentos y son más difíciles de deducir.
+
+Por ahora, céntrese en los dígitos fáciles. Considere este ejemplo más grande:
+
+be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
+edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
+fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
+fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
+aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea
+fgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf | gebdcfa ecba ca fadegcb
+dbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf | cefg dcbef fcge gbcadfe
+bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef
+egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
+gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
+
+Debido a que los dígitos 1, 4, 7 y 8 utilizan cada uno un número único de segmentos, debería poder saber qué combinaciones de señales 
+corresponden a esos dígitos. Contando solo dígitos en los valores de salida (la parte después de | en cada línea), en el ejemplo 
+anterior, hay 26 instancias de dígitos que usan un número único de segmentos (resaltados arriba).
+
+En los valores de salida, ¿cuántas veces aparecen los dígitos 1, 4, 7 u 8?
