@@ -7,15 +7,16 @@ const input = fs
   .split("\r\n")
 
 let output = input
-  .map(display => display.split(' | ')[1])
-  .map(display => display.split(' ')
-     .map(display => display.length))
+  .map(val => val.split(' | ')[1])
+  .map(val => val.split(' ')
+     .map(val => val.length))
   .flat(1)
   .reduce((acum,rec) => 
       (rec===2 || rec===3 || rec===4 || rec===7 ) ?  ++acum : acum, 0  )
 
-console.log( 'Parte 1', output);   // 495
+console.log( 'Parte 1', output);   // 548
 
+//   Part two ************************************************************************
 
 const conversor = (vals) => {
     const segments = new Array(input.length).fill('');
@@ -106,26 +107,22 @@ const conversor = (vals) => {
 };
 
 const left = input
-  .map(display => display.split(' | ')[0])                      // separa la parte izquierda del enunciado
-  .map(display => display.split(' ')                            // separa los 10 dígitos que van del 0 al 9 sin orden
-    .map(display => ({'sgm':display.split('').sort().join(''),
-                      'len':display.length}))                   // se etiqueta cada código con su longitud
-  ).map( vals => conversor(vals))                               // rutina que convierte cada código en un número
-                                                                // devuelve los códigos en un array de 10 en función de su valor
+  .map(val => val.split(' | ')[0])                      // separa la parte izquierda del enunciado
+  .map(val => val.split(' ')                            // separa los 10 dígitos que van del 0 al 9 sin orden
+    .map(val => ({'sgm':val.split('').sort().join(''),
+                      'len':val.length}))               // se etiqueta cada código con su longitud
+  ).map( vals => conversor(vals))                       // rutina que convierte cada código en un número
+                                                        // devuelve los códigos en un array de 10 en función de su valor
   
 
 const right = input
-  .map(display => display.split(' | ')[1])                      // separa la parte derecha del enunciado
-  .map(display => display.split(' ')                            // separa los 4 dígitos de cada pantalla 
-    .map(display => display.split('').sort().join('')))         // se ordenan para poder comparalos mas tarde
-  .map((val, idx) => {                                          // se codifica cada código con un número según lo
-    const res = [];                                             //    calculado en la parte izquierda del enunciado  
-    for (let item of val) res.push(left[idx].indexOf(item)) 
-    return res;
-    })
-  .map(val => Number(val.reduce((acum, rec) => acum+rec, '')))  // converte el array de números en un número
+  .map(val => val.split(' | ')[1])                      // separa la parte derecha del enunciado
+  .map(val => val.split(' ')                            // separa los 4 dígitos de cada pantalla 
+    .map(val => val.split('').sort().join('')))         // se ordenan para poder comparalos mas tarde
+  .map((val, idx) =>                                    // se codifica cada código con un número según lo
+      val.map(item => left[idx].indexOf(item)))         //    calculado en la parte izquierda del enunciado 
+  .map(val => Number(val.reduce((acum, rec) => acum+rec, '')))  // convierte el array de números en un número
   .reduce((acum,rec) => acum+rec, 0);                           // sumatorio de todos los números
 
   
-console.log( 'Parte 2', right);   // 495
-
+console.log( 'Parte 2', right);   // 1074888

@@ -79,3 +79,67 @@ corresponden a esos dígitos. Contando solo dígitos en los valores de salida (l
 anterior, hay 26 instancias de dígitos que usan un número único de segmentos (resaltados arriba).
 
 En los valores de salida, ¿cuántas veces aparecen los dígitos 1, 4, 7 u 8?
+
+
+
+--- La segunda parte ---
+Mediante una pequeña deducción, ahora debería poder determinar los dígitos restantes. Considere nuevamente el primer ejemplo anterior:
+
+acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
+
+Después de un análisis cuidadoso, el mapeo entre los cables de señal y los segmentos solo tiene sentido en la siguiente configuración:
+
+ dddd
+e    a
+e    a
+ ffff
+g    b
+g    b
+ cccc
+
+Entonces, los patrones de señal únicos corresponderían a los siguientes dígitos:
+
+acedgfb: 8
+cdfbe: 5
+gcdfa: 2
+fbcad: 3
+dab: 7
+cefabd: 9
+cdfgeb: 6
+eafb: 4
+cagedb: 0
+ab: 1
+
+Luego, se pueden decodificar los cuatro dígitos del valor de salida:
+
+cdfeb: 5
+fcadb: 3
+cdfeb: 5
+cdbaf: 3
+
+Por lo tanto, el valor de salida para esta entrada es 5353.
+
+Siguiendo este mismo proceso para cada entrada en el segundo ejemplo más grande anterior, se puede determinar el valor de salida 
+de cada entrada:
+
+fdgacbe cefdb cefbgd gcbe: 8394
+fcgedb cgb dgebacf gc: 9781
+cg cg fdcagb cbg: 1197
+efabcd cedba gadfec cb: 9361
+gecf egdcabf bgf bfgea: 4873
+gebdcfa ecba ca fadegcb: 8418
+cefg dcbef fcge gbcadfe: 4548
+ed bcgafe cdgba cbgef: 1625
+gbdfcae bgc cg cgb: 8717
+fgae cfgab fg bagce: 4315
+
+Agregar todos los valores de salida en este ejemplo más grande produce 61229.
+
+Para cada entrada, determine todas las conexiones de cable/segmento y decodifique los valores de salida de cuatro dígitos. 
+¿Qué obtienes si sumas todos los valores de salida?
+
+Su respuesta al acertijo fue 1074888.
+
+¡Ambas partes de este rompecabezas están completas! Proporcionan dos estrellas doradas: **
+
+En este punto, debes volver a tu calendario de Adviento y probar con otro acertijo.
