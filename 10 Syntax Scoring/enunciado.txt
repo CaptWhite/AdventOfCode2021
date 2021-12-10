@@ -1,0 +1,67 @@
+--- Día 10: Puntuación de sintaxis ---
+
+Le pides al submarino que determine la mejor ruta para salir de la cueva de aguas profundas, pero solo responde:
+
+Error de sintaxis en el subsistema de navegación en línea: todos
+Todos ellos ? El daño es peor de lo que pensaba. Abre una copia del subsistema de navegación (su entrada de
+rompecabezas).
+
+La sintaxis del subsistema de navegación se compone de varias líneas que contienen fragmentos. 
+Hay uno o más fragmentos en cada línea y los fragmentos contienen cero o más fragmentos. Los fragmentos adyacentes
+no están separados por ningún delimitador; si un fragmento se detiene, el siguiente fragmento (si lo hay) puede 
+comenzar inmediatamente. Cada fragmento debe abrirse y cerrarse con uno de los cuatro pares legales de caracteres 
+coincidentes:
+
+Si un fragmento se abre con (, debe cerrarse con).
+Si un fragmento se abre con [, debe cerrarse con].
+Si un fragmento se abre con {, debe cerrarse con}.
+Si un fragmento se abre con <, debe cerrarse con>.
+
+Entonces, () es un fragmento legal que no contiene otros fragmentos, como es []. Los fragmentos más complejos 
+pero válidos incluyen ([]), {() () ()}, <([{}])>, [<> ({}) {} [([]) <>]] e incluso (((((((((()))))))).
+
+Algunas líneas están incompletas, pero otras están dañadas. Primero busque y descarte las líneas dañadas.
+
+Una línea corrupta es aquella en la que un fragmento se cierra con el carácter incorrecto, es decir, donde los 
+caracteres con los que se abre y se cierra no forman uno de los cuatro pares legales enumerados anteriormente.
+
+Entre los ejemplos de fragmentos dañados se incluyen (], {() () ()>, (((()))} y <([]) {()} [{}]). Dicho fragmento 
+puede aparecer en cualquier lugar dentro de un línea, y su presencia hace que toda la línea se considere dañada.
+
+Por ejemplo, considere el siguiente subsistema de navegación:[({(<(())[]>[[{[]{<()<>>
+[(()[<>])]({[<{<<[]>>(
+{([(<{}[<>[]}>{[]{[(<()>
+(((({<>}<{<{<>}{[]{[]{}
+[[<[([]))<([[{}[[()]]]
+[{[{({}]{}}([{[{{{}}([]
+{<[[]]>}<{[{[{[]{()[[[]
+[<(<(<(<{}))><([]([]()
+<{([([[(<>()){}]>(<<{{
+<{([{{}}[<[[[<>{}]]]>[]]
+
+Algunas de las líneas no están dañadas, solo están incompletas; puede ignorar estas líneas por ahora. 
+Las cinco líneas restantes están dañadas:
+
+{([(<{}[<>[]}>{[]{[(<()> - se esperaba], pero se encontró } en su lugar.
+[[<[([]))<([[{}[[()]]]   - se esperaba], pero se encontró ) en su lugar.
+[{[{({}]{}}([{[{{{}}([]  - se esperaba), pero se encontró ] en su lugar.
+[<(<(<(<{}))><([]([]()   - se esperaba>, pero se encontró) en su lugar.
+<{([([[(<>()){}]>(<<{{   - se esperaba], pero se encontró> en su lugar).
+
+Deténgase en el primer carácter de cierre incorrecto en cada línea dañada.
+
+¿Sabía que los verificadores de sintaxis en realidad tienen concursos para ver quién puede obtener la puntuación 
+más alta por errores de sintaxis en un archivo? ¡Es cierto! Para calcular la puntuación de error de sintaxis de una 
+línea, tome el primer carácter ilegal de la línea y búsquelo en la siguiente tabla:
+
+): 3 puntos.
+]: 57 puntos.
+}: 1197 puntos.
+>: 25137 puntos.
+
+En el ejemplo anterior, un ilegal ) se encontró dos veces (2 * 3 = 6 puntos), un ilegal ] se encontró una vez 
+(57 puntos), un ilegal } se encontró una vez (1197 puntos) y un ilegal > se encontró una vez ( 25137 puntos). 
+Entonces, la puntuación total de error de sintaxis para este archivo es 6 + 57 + 1197 + 25137 = 26397 puntos.
+
+Busque el primer carácter ilegal en cada línea dañada del subsistema de navegación. ¿Cuál es la puntuación total 
+de errores de sintaxis para esos errores?
