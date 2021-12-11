@@ -1,0 +1,354 @@
+--- Día 11: Pulpo Dumbo ---
+¡Entras en una gran caverna llena de raros pulpos dumbo bioluminiscentes! Parece que no les gustan las luces
+ navideñas de tu submarino, así que las apagas por ahora.
+
+Hay 100 pulpos ordenados en una cuadrícula de 10 por 10. Cada pulpo gana energía lentamente con el tiempo y 
+destella intensamente por un momento cuando su energía está llena. Aunque sus luces están apagadas, tal vez 
+podría navegar a través de la cueva sin molestar a los pulpos si pudiera predecir cuándo ocurrirán los destellos
+ de luz.
+
+Cada pulpo tiene un nivel de energía: su submarino puede medir de forma remota el nivel de energía de cada pulpo
+(su entrada de rompecabezas). Por ejemplo:
+
+5483143223
+2745854711
+5264556173
+6141336146
+6357385478
+4167524645
+2176841721
+6882881134
+4846848554
+5283751526
+
+El nivel de energía de cada pulpo es un valor entre 0 y 9. Aquí, el pulpo de arriba a la izquierda tiene un nivel
+ de energía de 5, el de abajo a la derecha tiene un nivel de energía de 6, y así sucesivamente.
+
+Puede modelar los niveles de energía y los destellos de luz en pasos. Durante un solo paso, ocurre lo siguiente:
+
+Primero, el nivel de energía de cada pulpo aumenta en 1.
+Entonces, cualquier pulpo con un nivel de energía superior a 9 parpadea. Esto aumenta el nivel de energía de todos
+los pulpos adyacentes en 1, incluidos los pulpos que están diagonalmente adyacentes. Si esto hace que un pulpo
+tenga un nivel de energía superior a 9, también parpadea. Este proceso continúa mientras los nuevos pulpos sigan
+aumentando su nivel de energía por encima de 9. (Un pulpo solo puede parpadear como máximo una vez por paso).
+Finalmente, cualquier pulpo que brilló durante este paso tiene su nivel de energía establecido en 0, ya que usó 
+toda su energía para parpadear.
+Los destellos adyacentes pueden hacer que un pulpo destelle en un paso incluso si comienza ese paso con muy poca 
+energía. Considere el pulpo medio con 1 energía en esta situación:
+
+Antes de cualquier paso:
+11111
+19991
+19191
+19991
+11111
+
+Después del paso 1:
+34543
+40004
+50005
+40004
+34543
+
+Después del paso 2:
+45654
+51115
+61116
+51115
+45654
+
+Un pulpo se resalta cuando parpadea durante el paso dado.
+
+Así es como avanza el ejemplo más grande anterior:
+
+Antes de cualquier paso:
+5483143223
+2745854711
+5264556173
+6141336146
+6357385478
+4167524645
+2176841721
+6882881134
+4846848554
+5283751526
+
+Después del paso 1:
+6594254334
+3856965822
+6375667284
+7252447257
+7468496589
+5278635756
+3287952832
+7993992245
+5957959665
+6394862637
+
+Después del paso 2:
+8807476555
+5089087054
+8597889608
+8485769600
+8700908800
+6600088989
+6800005943
+0000007456
+9000000876
+8700006848
+
+Después del paso 3:
+0050900866
+8500800575
+9900000039
+9700000041
+9935080063
+7712300000
+7911250009
+2211130000
+0421125000
+0021119000
+
+Después del paso 4:
+2263031977
+0923031697
+0032221150
+0041111163
+0076191174
+0053411122
+0042361120
+5532241122
+1532247211
+1132230211
+
+Después del paso 5:
+4484144000
+2044144000
+2253333493
+1152333274
+1187303285
+1164633233
+1153472231
+6643352233
+2643358322
+2243341322
+
+Después del paso 6:
+5595255111
+3155255222
+3364444605
+2263444496
+2298414396
+2275744344
+2264583342
+7754463344
+3754469433
+3354452433
+
+Después del paso 7:
+6707366222
+4377366333
+4475555827
+3496655709
+3500625609
+3509955566
+3486694453
+8865585555
+4865580644
+4465574644
+
+Después del paso 8:
+7818477333
+5488477444
+5697666949
+4608766830
+4734946730
+4740097688
+6900007564
+0000009666
+8000004755
+6800007755
+
+Después del paso 9:
+9060000644
+7800000976
+6900000080
+5840000082
+5858000093
+6962400000
+8021250009
+2221130009
+9111128097
+7911119976
+
+Después del paso 10:
+0481112976
+0031112009
+0041112504
+0081111406
+0099111306
+0093511233
+0442361130
+5532252350
+0532250600
+0032240000
+
+Después del paso 10, ha habido un total de 204 flashes. Avance rápido, aquí está la misma configuración cada
+10 pasos:
+
+Después del paso 20:
+3936556452
+5686556806
+4496555690
+4448655580
+4456865570
+5680086577
+7000009896
+0000000344
+6000000364
+4600009543
+
+Después del paso 30:
+0643334118
+4253334611
+3374333458
+2225333337
+2229333338
+2276733333
+2754574565
+5544458511
+9444447111
+7944446119
+
+Después del paso 40:
+6211111981
+0421111119
+0042111115
+0003111115
+0003111116
+0065611111
+0532351111
+3322234597
+2222222976
+2222222762
+
+Después del paso 50:
+9655556447
+4865556805
+4486555690
+4458655580
+4574865570
+5700086566
+6000009887
+8000000533
+6800000633
+5680000538
+
+Después del paso 60:
+2533334200
+2743334640
+2264333458
+2225333337
+2225333338
+2287833333
+3854573455
+1854458611
+1175447111
+1115446111
+
+Después del paso 70:
+8211111164
+0421111166
+0042111114
+0004211115
+0000211116
+0065611111
+0532351111
+7322235117
+5722223475
+4572222754
+
+Después del paso 80:
+1755555697
+5965555609
+4486555680
+4458655580
+4570865570
+5700086566
+7000008666
+0000000990
+0000000800
+0000000000
+
+Después del paso 90:
+7433333522
+2643333522
+2264333458
+2226433337
+2222433338
+2287833333
+2854573333
+4854458333
+3387779333
+3333333333
+
+Después del paso 100:
+0397666866
+0749766918
+0053976933
+0004297822
+0004229892
+0053222877
+0532222966
+9322228966
+7922286866
+6789998766
+Después de 100 pasos, ha habido un total de 1656 destellos.
+
+Dados los niveles de energía iniciales de los pulpos dumbo en su caverna, simule 100 pasos. ¿Cuántos destellos
+totales hay después de 100 pasos?
+
+
+--- La segunda parte ---
+Parece que los flashes individuales no son lo suficientemente brillantes para navegar. Sin embargo, es posible 
+que tenga una mejor opción: ¡los flashes parecen estar sincronizándose!
+
+En el ejemplo anterior, la primera vez que todos los pulpos parpadean simultáneamente es el paso 195:
+
+Después del paso 193:
+5877777777
+8877777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+
+Después del paso 194:
+6988888888
+9988888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+
+Después del paso 195:
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+Si puedes calcular los momentos exactos en los que los pulpos parpadearán todos simultáneamente, deberías poder 
+navegar a través de la caverna. ¿Cuál es el primer paso durante el cual parpadean todos los pulpos?
