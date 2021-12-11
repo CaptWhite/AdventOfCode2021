@@ -63,3 +63,13 @@ números disminuyen en 1 si estaban presentes al comienzo del día.
 En este ejemplo, después de 18 días, hay un total de 26 peces. Después de 80 días, habría un total de 5934.
 
 Encuentra una manera de simular un pez linterna. ¿Cuántos peces linterna habría después de 80 días?
+
+--- La segunda parte ---
+Supongamos que los peces linterna viven para siempre y tienen comida y espacio ilimitados. 
+¿Se apoderarían de todo el océano?
+
+Después de 256 días en el ejemplo anterior, ¡habría un total de 26984457539 peces linterna!
+
+¿Cuántos peces linterna habría después de 256 días?
+
+Su respuesta al acertijo fue 1732731810807.

@@ -65,3 +65,57 @@ Entonces, la puntuación total de error de sintaxis para este archivo es 6 + 57 
 
 Busque el primer carácter ilegal en cada línea dañada del subsistema de navegación. ¿Cuál es la puntuación total 
 de errores de sintaxis para esos errores?
+
+
+--- La segunda parte ---
+Ahora, descarte las líneas dañadas. Las líneas restantes están incompletas.
+
+Las líneas incompletas no tienen caracteres incorrectos; en cambio, les faltan algunos caracteres de cierre al 
+final de la línea. Para reparar el subsistema de navegación, solo necesita averiguar la secuencia de caracteres 
+de cierre que completan todos los fragmentos abiertos en la línea.
+
+Solo puede usar caracteres de cierre (),],} o>), y debe agregarlos en el orden correcto para que solo se formen 
+pares legales y todos los fragmentos terminen cerrados.
+
+En el ejemplo anterior, hay cinco líneas incompletas:
+
+[({(<(())[]>[[{[]{<()<>> - Complete agregando}}]])})].
+[(()[<>])]({[<{<<[]>>(   - Complete agregando)}>]}).
+(((({<>}<{<{<>}{[]{[]{}  - Complete agregando}}>}>)))).
+{<[[]]>}<{[{[{[]{()[[[]  - Complete agregando]]}}]}]}>.
+<{([{{}}[<[[[<>{}]]]>[]] - Complete agregando])}>.
+
+¿Sabías que las herramientas de autocompletar también tienen concursos? ¡Es cierto! La puntuación se determina 
+considerando la cadena de finalización carácter por carácter. Comience con una puntuación total de 0. 
+Luego, para cada personaje, multiplique la puntuación total por 5 y luego aumente la puntuación total por el 
+valor de puntos dado para el personaje en la siguiente tabla:
+
+): 1 punto.
+]: 2 puntos.
+}: 3 puntos.
+>: 4 puntos.
+
+Entonces, la última cadena de finalización arriba -])}> - se puntuaría de la siguiente manera:
+
+Comience con una puntuación total de 0.
+Multiplique la puntuación total por 5 para obtener 0, luego agregue el valor de ] (2) para obtener una nueva puntuación total de 2.
+Multiplique el puntaje total por 5 para obtener 10, luego agregue el valor de ) (1) para obtener un nuevo puntaje total de 11.
+Multiplique la puntuación total por 5 para obtener 55, luego agregue el valor de } (3) para obtener una nueva puntuación total de 58.
+Multiplique la puntuación total por 5 para obtener 290, luego agregue el valor de > (4) para obtener una nueva puntuación total de 294.
+
+Las cadenas de finalización de las cinco líneas tienen puntuaciones totales de la siguiente manera:
+
+}}]])})]  - 288957 puntos totales.
+)}>]})    - 5566 puntos en total.
+}}>}>)))) - 1480781 puntos totales.
+]]}}]}]}> - 995444 puntos en total.
+])}>      - 294 puntos en total.
+
+Las herramientas de autocompletar son un grupo extraño: el ganador se encuentra clasificando todos los puntajes y luego tomando 
+el puntaje medio. (Siempre habrá un número impar de puntajes a considerar). En este ejemplo, el puntaje medio es 288957 porque 
+hay el mismo número de puntajes más pequeños y más grandes que él.
+
+Busque la cadena de finalización para cada línea incompleta, califique las cadenas de finalización y ordene las calificaciones. 
+¿Cuál es la puntuación media?
+
+La respuesta al acertijo fue 4263222782.
