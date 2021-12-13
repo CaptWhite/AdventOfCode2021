@@ -1,0 +1,131 @@
+--- Día 13: Origami transparente ---
+Llegas a otra parte volcánicamente activa de la cueva. Sería bueno si pudiera hacer algún tipo de imagen térmica 
+para poder saber con anticipación qué cuevas están demasiado calientes para entrar de manera segura.
+
+¡Afortunadamente, el submarino parece estar equipado con una cámara térmica! Cuando lo activa, es recibido con:
+
+¡Felicitaciones por su compra! Para activar esta termografía infrarroja
+sistema de cámara, ingrese el código que se encuentra en la página 1 del manual.
+Aparentemente, los Elfos nunca han usado esta función. Para su sorpresa, logra encontrar el manual; a medida que
+ lo abre, la página 1 se cae. ¡Es una hoja grande de papel transparente! El papel transparente está marcado con 
+ puntos aleatorios e incluye instrucciones sobre cómo doblarlo (la entrada del rompecabezas). Por ejemplo:
+
+6,10
+0,14
+9,10
+0,3
+10,4
+4,11
+6,0
+6,12
+4,1
+0,13
+10,12
+3,4
+3,0
+8,4
+1,10
+2,14
+8,10
+9,0
+
+doblar a lo largo de y = 7
+doblar a lo largo de x = 5
+
+La primera sección es una lista de puntos en el papel transparente. 0,0 representa la coordenada superior izquierda. 
+El primer valor, x, aumenta hacia la derecha. El segundo valor, y, aumenta hacia abajo. Entonces, la coordenada 3,0 
+está a la derecha de 0,0 y la coordenada 0,7 está por debajo de 0,0. Las coordenadas en este ejemplo forman el siguiente 
+patrón, donde # es un punto en el papel y. es una posición vacía, sin marcar:
+
+...#..#..#.0
+....#......1
+...........2
+#..........3
+...#....#.#4
+...........5
+...........6
+...........7
+...........9
+...........9
+.#....#.##.0
+....#......1
+......#...#3
+#..........3
+#.#........4
+Luego, hay una lista de instrucciones de plegado. Cada instrucción indica una línea en el papel transparente y quiere 
+que doble el papel hacia arriba (para líneas horizontales y = ...) o hacia la izquierda (para líneas verticales x = ...). 
+En este ejemplo, la primera instrucción de pliegue es pliegue a lo largo de y = 7, que designa la línea formada por 
+todas las posiciones donde y es 7 (marcada aquí con -):
+
+...#..#..#.0
+....#......1
+...........2
+#..........3
+...#....#.#4
+...........5
+...........6
+-----------7
+...........8
+...........9
+.#....#.##.0
+....#......1
+......#...#2
+#..........2
+#.#........4
+
+Debido a que se trata de una línea horizontal, doble la mitad inferior hacia arriba. Algunos de los puntos pueden 
+terminar superpuestos una vez que se completa el pliegue, pero los puntos nunca aparecerán exactamente en una línea 
+de pliegue. El resultado de hacer este pliegue se ve así:
+
+#.##..#..#.
+#...#......
+......#...#
+#...#......
+.#.#..#.###
+...........
+...........
+
+Ahora, solo se ven 17 puntos.
+
+Observe, por ejemplo, los dos puntos en la esquina inferior izquierda antes de que se doble el papel transparente; 
+una vez que se completa el pliegue, esos puntos aparecen en la esquina superior izquierda (en 0,0 y 0,1). Debido a 
+que el papel es transparente, el punto justo debajo de ellos en el resultado (en 0,3) permanece visible, como se puede 
+ver a través del papel transparente.
+
+También observe que algunos puntos pueden terminar superpuestos; en este caso, los puntos se fusionan y se convierten 
+en un solo punto.
+
+La segunda instrucción de plegado es plegar a lo largo de x = 5, lo que indica esta línea:
+
+#.##..#..#.
+#...#......
+......#...#
+#...#......
+.#.#..#.###
+...........
+...........
+
+Debido a que esta es una línea vertical, doble a la izquierda:
+
+#####
+#...#
+#...#
+#...#
+#####
+.....
+.....
+
+¡Las instrucciones formaron un cuadrado!
+
+El papel transparente es bastante grande, así que, por ahora, concéntrate en completar el primer pliegue. 
+Después del primer pliegue en el ejemplo anterior, se ven 17 puntos; los puntos que terminan superpuestos después 
+de que se completa el pliegue cuentan como un solo punto.
+
+¿Cuántos puntos son visibles después de completar solo la primera instrucción de plegado en su papel transparente?
+
+--- La segunda parte ---
+
+Termina de doblar el papel transparente según las instrucciones. El manual dice que el código siempre tiene 
+ocho letras mayúsculas.
+
+¿Qué código utiliza para activar el sistema de cámara termográfica por infrarrojos?

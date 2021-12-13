@@ -1,0 +1,170 @@
+--- Día 12: Passage Pathing ---
+Dado que los subsistemas subterráneos de su submarino subsisten de manera subóptima, 
+la única forma de salir de esta cueva pronto es encontrando un camino usted mismo. 
+No solo un camino: la única forma de saber si ha encontrado el mejor camino es 
+encontrarlos todos.
+
+Afortunadamente, los sensores todavía funcionan en su mayor parte, por lo que 
+construye un mapa aproximado de las cuevas restantes (su entrada de rompecabezas). 
+Por ejemplo:
+
+start-A
+start-b
+A-c
+A-b
+b-d
+A-end
+b-end
+
+Esta es una lista de cómo están conectadas todas las cuevas. Comienzas en la cueva 
+llamada inicio y tu destino es la cueva llamada final. Una entrada como b-d significa 
+que la cueva b está conectada a la cueva d, es decir, puede moverse entre ellas.
+
+Entonces, el sistema de cuevas anterior se ve más o menos así:
+
+    start
+    /   \
+c--A-----b--d
+    \   /
+     end
+Su objetivo es encontrar la cantidad de caminos distintos que comienzan al principio, 
+terminan al final y no visitan cuevas pequeñas más de una vez. Hay dos tipos de cuevas: 
+cuevas grandes (escritas en mayúsculas, como A) y cuevas pequeñas (escritas en minúsculas, 
+como b). Sería una pérdida de tiempo visitar una cueva pequeña más de una vez, pero las 
+cuevas grandes son lo suficientemente grandes como para que valga la pena visitarlas 
+varias veces. Por lo tanto, todos los caminos que encuentres deben visitar cuevas pequeñas 
+como máximo una vez, y puedes visitar cuevas grandes tantas veces como quieras.
+
+Dadas estas reglas, hay 10 caminos a través de este ejemplo de sistema de cuevas:
+
+start,A,b,A,c,A,end
+start,A,b,A,end
+start,A,b,end
+start,A,c,A,b,A,end
+start,A,c,A,b,end
+start,A,c,A,end
+start,A,end
+start,b,A,c,A,end
+start,b,A,end
+start,b,end
+(Cada línea en la lista anterior corresponde a un solo camino; las cuevas visitadas por 
+ese camino se enumeran en el orden en que fueron visitadas y separadas por comas).
+
+Tenga en cuenta que en este sistema de cuevas, la cueva d nunca es visitada por ningún 
+camino: para hacerlo, la cueva b tendría que ser visitada dos veces (una en el camino a 
+la cueva d y una segunda vez al regresar de la cueva d), y desde la cueva b es pequeño, 
+esto no está permitido.
+
+Aquí hay un ejemplo un poco más grande:
+
+dc-end
+HN-start
+start-kj
+dc-start
+dc-HN
+LN-dc
+HN-end
+kj-sa
+kj-HN
+kj-dc
+
+Los 19 caminos que lo atraviesan son los siguientes:
+
+start,HN,dc,HN,end
+start,HN,dc,HN,kj,HN,end
+start,HN,dc,end
+start,HN,dc,kj,HN,end
+start,HN,end
+start,HN,kj,HN,dc,HN,end
+start,HN,kj,HN,dc,end
+start,HN,kj,HN,end
+start,HN,kj,dc,HN,end
+start,HN,kj,dc,end
+start,dc,HN,end
+start,dc,HN,kj,HN,end
+start,dc,end
+start,dc,kj,HN,end
+start,kj,HN,dc,HN,end
+start,kj,HN,dc,end
+start,kj,HN,end
+start,kj,dc,HN,end
+start,kj,dc,end
+
+Finalmente, este ejemplo aún más grande tiene 226 rutas a través de él:
+
+fs-end
+he-DX
+fs-he
+start-DX
+pj-DX
+end-zg
+zg-sl
+zg-pj
+pj-he
+RW-he
+fs-DX
+pj-RW
+zg-RW
+start-pj
+he-WI
+zg-he
+pj-fs
+start-RW
+
+¿Cuántos caminos a través de este sistema de cuevas hay que visitan pequeñas cuevas como 
+máximo una vez?
+
+
+--- La segunda parte ---
+
+Después de revisar los caminos disponibles, se da cuenta de que es posible que tenga tiempo 
+para visitar una sola cueva pequeña dos veces. Específicamente, las cuevas grandes se pueden 
+visitar cualquier cantidad de veces, una sola cueva pequeña se puede visitar como máximo dos 
+veces y las cuevas pequeñas restantes se pueden visitar como máximo una vez. Sin embargo, 
+las cuevas llamadas inicio y final solo se pueden visitar exactamente una vez cada una: 
+una vez que abandona la cueva de inicio, no puede regresar a ella, y una vez que llega a la 
+cueva final, el camino debe terminar inmediatamente.
+
+Ahora, las 36 rutas posibles a través del primer ejemplo anterior son:
+
+start,A,b,A,b,A,c,A,end
+start,A,b,A,b,A,end
+start,A,b,A,b,end
+start,A,b,A,c,A,b,A,end
+start,A,b,A,c,A,b,end
+start,A,b,A,c,A,c,A,end
+start,A,b,A,c,A,end
+start,A,b,A,end
+start,A,b,d,b,A,c,A,end
+start,A,b,d,b,A,end
+start,A,b,d,b,end
+start,A,b,end
+start,A,c,A,b,A,b,A,end
+start,A,c,A,b,A,b,end
+start,A,c,A,b,A,c,A,end
+start,A,c,A,b,A,end
+start,A,c,A,b,d,b,A,end
+start,A,c,A,b,d,b,end
+start,A,c,A,b,end
+start,A,c,A,c,A,b,A,end
+start,A,c,A,c,A,b,end
+start,A,c,A,c,A,end
+start,A,c,A,end
+start,A,end
+start,b,A,b,A,c,A,end
+start,b,A,b,A,end
+start,b,A,b,end
+start,b,A,c,A,b,A,end
+start,b,A,c,A,b,end
+start,b,A,c,A,c,A,end
+start,b,A,c,A,end
+start,b,A,end
+start,b,d,b,A,c,A,end
+start,b,d,b,A,end
+start,b,d,b,end
+start,b,end
+
+El ejemplo un poco más grande ahora tiene 103 rutas a través de él, y el ejemplo aún más grande 
+ahora tiene 3509 rutas a través de él.
+
+Dadas estas nuevas reglas, ¿cuántos caminos hay a través de este sistema de cuevas?
