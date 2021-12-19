@@ -1,0 +1,146 @@
+--- Día 16: Decodificador de paquetes ---
+Al salir de la cueva y llegar a aguas abiertas, recibirá una transmisión de los Elfos en el barco.
+
+La transmisión se envió mediante el sistema de transmisión de intercambio de flotabilidad (BITS), un método para empaquetar 
+expresiones numéricas en una secuencia binaria. La computadora de su submarino ha guardado la transmisión en hexadecimal 
+(su entrada de rompecabezas).
+
+El primer paso para decodificar el mensaje es convertir la representación hexadecimal en binaria. Cada carácter hexadecimal 
+corresponde a cuatro bits de datos binarios:
+
+0 = 0000
+1 = 0001
+2 = 0010
+3 = 0011
+4 = 0100
+5 = 0101
+6 = 0110
+7 = 0111
+8 = 1000
+9 = 1001
+A = 1010
+B = 1011
+C = 1100
+D = 1101
+E = 1110
+F = 1111
+
+La transmisión BITS contiene un solo paquete en su capa más externa, que a su vez contiene muchos otros paquetes. 
+La representación hexadecimal de este paquete podría codificar algunos bits 0 adicionales al final; estos no son parte de la 
+transmisión y deben ignorarse.
+
+Cada paquete comienza con un encabezado estándar: los primeros tres bits codifican la versión del paquete y los siguientes 
+tres bits codifican el ID del tipo de paquete. Estos dos valores son números; todos los números codificados en cualquier paquete 
+se representan como binarios con el bit más significativo primero. Por ejemplo, una versión codificada como la secuencia binaria 
+100 representa el número 4.
+
+Los paquetes con ID de tipo 4 representan un valor literal. Los paquetes de valor literal codifican un solo número binario. 
+Para hacer esto, el número binario se rellena con ceros iniciales hasta que su longitud sea un múltiplo de cuatro bits, y luego 
+se divide en grupos de cuatro bits. Cada grupo tiene el prefijo de 1 bit, excepto el último grupo, que tiene el prefijo de 0 bit. 
+Estos grupos de cinco bits siguen inmediatamente al encabezado del paquete. Por ejemplo, la cadena hexadecimal D2FE28 se convierte en:
+
+110100101111111000101000
+VVVTTTAAAAABBBBBCCCCC
+Debajo de cada bit hay una etiqueta que indica su propósito:
+
+
+Los tres bits etiquetados como V (110) son la versión del paquete, 6.
+Los tres bits etiquetados como T (100) son el ID del tipo de paquete, 4, lo que significa que el paquete es un valor literal.
+Los cinco bits etiquetados como A (10111) comienzan con un 1 (no es el último grupo, siga leyendo) y contienen los primeros cuatro bits del número, 0111.
+Los cinco bits etiquetados como B (11110) comienzan con un 1 (no es el último grupo, sigue leyendo) y contienen cuatro bits más del número, 1110.
+Los cinco bits etiquetados como C (00101) comienzan con un 0 (último grupo, final del paquete) y contienen los últimos cuatro bits del número, 0101.
+Los tres bits 0 sin etiquetar al final son adicionales debido a la representación hexadecimal y deben ignorarse.
+Entonces, este paquete representa un valor literal con representación binaria 011111100101, que es 2021 en decimal.
+
+Cualquier otro tipo de paquete (cualquier paquete con un ID de tipo distinto de 4) representa un operador que realiza algún cálculo 
+en uno o más subpaquetes contenidos dentro. En este momento, las operaciones específicas no son importantes; centrarse en analizar 
+la jerarquía de subpaquetes.
+
+Un paquete de operador contiene uno o más paquetes. Para indicar qué datos binarios subsiguientes representan sus subpaquetes, 
+un paquete de operador puede utilizar uno de los dos modos indicados por el bit inmediatamente después del encabezado del paquete; 
+esto se llama ID de tipo de longitud:
+
+Si el ID del tipo de longitud es 0, los siguientes 15 bits son un número que representa la longitud total en bits de los subpaquetes 
+contenidos en este paquete.
+Si el ID del tipo de longitud es 1, los siguientes 11 bits son un número que representa el número de subpaquetes que contiene 
+inmediatamente este paquete.
+Finalmente, después del bit de identificación del tipo de longitud y el campo de 15 u 11 bits, aparecen los subpaquetes.
+
+Por ejemplo, aquí hay un paquete de operador (cadena hexadecimal 38006F45291200) con ID de tipo de longitud 0 que contiene dos 
+subpaquetes:
+
+00111000000000000110111101000101001010010001001000000000
+VVVTTTILLLLLLLLLLLLLLLAAAAAAAAAAABBBBBBBBBBBBBBBB
+
+Los tres bits etiquetados como V (001) son la versión del paquete, 1.
+Los tres bits etiquetados como T (110) son el ID del tipo de paquete, 6, lo que significa que el paquete es un operador.
+El bit etiquetado I (0) es el ID del tipo de longitud, lo que indica que la longitud es un número de 15 bits que representa el número de bits en los subpaquetes.
+Los 15 bits etiquetados como L (000000000011011) contienen la longitud de los subpaquetes en bits, 27.
+Los 11 bits etiquetados como A contienen el primer subpaquete, un valor literal que representa el número 10.
+Los 16 bits etiquetados como B contienen el segundo subpaquete, un valor literal que representa el número 20.
+
+Después de leer 11 y 16 bits de datos del subpaquete, se alcanza la longitud total indicada en L (27), por lo que se detiene el 
+análisis sintáctico de este paquete.
+
+Como otro ejemplo, aquí hay un paquete de operador (cadena hexadecimal EE00D40C823060) con ID de tipo de longitud 1 que contiene 
+tres subpaquetes:
+
+11101110000000001101010000001100100000100011000001100000
+VVVTTTILLLLLLLLLLLAAAAAAAAAAABBBBBBBBBBBCCCCCCCCCCC
+
+Los tres bits etiquetados como V (111) son la versión del paquete, 7.
+Los tres bits etiquetados como T (011) son el ID del tipo de paquete, 3, lo que significa que el paquete es un operador.
+El bit etiquetado como I (1) es el ID del tipo de longitud, lo que indica que la longitud es un número de 11 bits que representa el número de subpaquetes.
+Los 11 bits etiquetados como L (00000000011) contienen el número de subpaquetes, 3.
+Los 11 bits etiquetados A contienen el primer subpaquete, un valor literal que representa el número 1.
+Los 11 bits etiquetados como B contienen el segundo subpaquete, un valor literal que representa el número 2.
+Los 11 bits etiquetados como C contienen el tercer subpaquete, un valor literal que representa el número 3.
+
+Después de leer 3 subpaquetes completos, se alcanza el número de subpaquetes indicado en L (3), por lo que se detiene el análisis 
+sintáctico de este paquete.
+
+Por ahora, analice la jerarquía de los paquetes a lo largo de la transmisión y sume todos los números de versión.
+
+Aquí hay algunos ejemplos más de transmisiones codificadas en hexadecimal:
+
+8A004A801A8002F478 representa un paquete de operador (versión 4) que contiene un paquete de operador (versión 1) que contiene 
+un paquete de operador (versión 5) que contiene un valor literal (versión 6); este paquete tiene una versión suma de 16.
+
+620080001611562C8802118E34 representa un paquete de operador (versión 3) que contiene dos subpaquetes; cada subpaquete es un 
+paquete de operador que contiene dos valores literales. Este paquete tiene una versión suma de 12.
+
+C0015000016115A2E0802F182340 tiene la misma estructura que el ejemplo anterior, pero el paquete más externo usa un ID de tipo 
+de longitud diferente. Este paquete tiene una versión suma de 23.
+
+A0016C880162017C3686B18A3D4780 es un paquete de operador que contiene un paquete de operador que contiene un paquete de operador 
+que contiene cinco valores literales; tiene una versión suma de 31.
+
+Decodifique la estructura de su transmisión BITS codificada en hexadecimal; 
+¿Qué obtiene si suma los números de versión en todos los paquetes?
+
+
+--- La segunda parte ---
+Ahora que tiene la estructura de su transmisión decodificada, puede calcular el valor de la expresión que representa.
+
+Los valores literales (tipo ID 4) representan un solo número como se describe arriba. Los ID de tipo restantes son más interesantes:
+
+Los paquetes con ID de tipo 0 son paquetes de suma; su valor es la suma de los valores de sus subpaquetes. Si solo tienen un único subpaquete, su valor es el valor del subpaquete.
+Los paquetes con el tipo ID 1 son paquetes de productos; su valor es el resultado de multiplicar los valores de sus subpaquetes. Si solo tienen un único subpaquete, su valor es el valor del subpaquete.
+Los paquetes con tipo ID 2 son paquetes mínimos; su valor es el mínimo de los valores de sus subpaquetes.
+Los paquetes con tipo ID 3 son paquetes máximos; su valor es el máximo de los valores de sus subpaquetes.
+Los paquetes con ID de tipo 5 son mayores que los paquetes; su valor es 1 si el valor del primer subpaquete es mayor que el valor del segundo subpaquete; de lo contrario, su valor es 0. Estos paquetes siempre tienen exactamente dos subpaquetes.
+Los paquetes con ID de tipo 6 son menores que los paquetes; su valor es 1 si el valor del primer subpaquete es menor que el valor del segundo subpaquete; de lo contrario, su valor es 0. Estos paquetes siempre tienen exactamente dos subpaquetes.
+Los paquetes con ID de tipo 7 son iguales a los paquetes: su valor es 1 si el valor del primer subpaquete es igual al valor del segundo subpaquete; de lo contrario, su valor es 0. Estos paquetes siempre tienen exactamente dos subpaquetes.
+Con estas reglas, ahora puede calcular el valor del paquete más externo en su transmisión BITS.
+
+Por ejemplo:
+
+C200B40A82 encuentra la suma de 1 y 2, lo que da como resultado el valor 3.
+04005AC33890 encuentra el producto de 6 por 9, lo que da como resultado el valor 54.
+880086C3E88112 encuentra el mínimo de 7, 8 y 9, lo que da como resultado el valor 7.
+CE00C43D881120 encuentra el máximo de 7, 8 y 9, lo que da como resultado el valor 9.
+D8005AC2A8F0 produce 1, porque 5 es menor que 15.
+F600BC2D8F produce 0, porque 5 no es mayor que 15.
+9C005AC2F8F0 produce 0, porque 5 no es igual a 15.
+9C0141080250320F1802104A08 produce 1, porque 1 + 3 = 2 * 2.
+¿Qué obtiene si evalúa la expresión representada por su transmisión BITS codificada en hexadecimal?

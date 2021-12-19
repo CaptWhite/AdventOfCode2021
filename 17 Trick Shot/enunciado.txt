@@ -1,0 +1,158 @@
+--- Día 17: Truco ---
+Finalmente decodificas el mensaje de los Elfos. Hola, dice el mensaje. Sigues buscando 
+las llaves del trineo.
+
+Delante de usted está lo que parece ser una gran fosa oceánica. ¿Podrían haber caído las
+llaves en él? Será mejor que envíe una sonda para investigar.
+
+El lanzador de sondas de su submarino puede disparar la sonda con cualquier velocidad entera 
+en las direcciones x (hacia adelante) e y (hacia arriba o hacia abajo si es negativo).
+Por ejemplo, una velocidad inicial x,y como 0,10 dispararía la sonda hacia arriba, 
+mientras que una velocidad inicial como 10,-1 dispararía la sonda hacia adelante con un 
+ligero ángulo hacia abajo.
+
+La posición x,y de la sonda comienza en 0,0. Luego, seguirá alguna trayectoria moviéndose 
+en pasos. En cada paso, estos cambios ocurren en el siguiente orden:
+
+La posición x de la sonda aumenta por su velocidad x.
+La posición y de la sonda aumenta por su velocidad y.
+Debido al arrastre, la velocidad x de la sonda cambia en 1 hacia el valor 0; es decir, disminuye 
+    en 1 si es mayor que 0, aumenta en 1 si es menor que 0, o no cambia si ya es 0.
+Debido a la gravedad, la velocidad y de la sonda disminuye en 1.
+
+Para que la sonda llegue con éxito a la zanja, la sonda debe estar en alguna trayectoria que haga 
+que esté dentro de un área objetivo después de cualquier paso. La computadora submarina ya ha 
+calculado esta área objetivo (su entrada de rompecabezas). Por ejemplo:
+
+área objetivo: x = 20..30, y = -10..- 5
+
+Esta área objetivo significa que necesita encontrar valores iniciales de velocidad x, y tales 
+que después de cualquier paso, la posición x de la sonda sea al menos 20 y como máximo 30, 
+y la posición y de la sonda sea al menos -10 y como máximo -5.
+
+Dada esta área objetivo, una velocidad inicial que hace que la sonda esté dentro del área objetivo 
+después de cualquier paso es 7,2:
+
+.............#....#............
+.......#..............#........
+...............................
+S........................#.....
+...............................
+...............................
+...........................#...
+...............................
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................TTTTTTTT#TT
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+
+En este diagrama, S es la posición inicial de la sonda, 0,0. La coordenada x aumenta hacia la derecha 
+y la coordenada y aumenta hacia arriba. En la parte inferior derecha, las posiciones que están dentro 
+del área objetivo se muestran como T. Después de cada paso (hasta que se alcanza el área objetivo), 
+la posición de la sonda se marca con #. (El número de abajo a la derecha es tanto una posición a la 
+que llega la sonda como una posición en el área objetivo).
+
+Otra velocidad inicial que hace que la sonda esté dentro del área objetivo después de cualquier paso es 6,3:
+
+...............#..#............
+...........#........#..........
+...............................
+......#..............#.........
+...............................
+...............................
+S....................#.........
+...............................
+...............................
+...............................
+.....................#.........
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................T#TTTTTTTTT
+....................TTTTTTTTTTT
+
+Otro es 9,0:
+
+S........#.....................
+.................#.............
+...............................
+........................#......
+...............................
+....................TTTTTTTTTTT
+....................TTTTTTTTTT#
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+....................TTTTTTTTTTT
+
+Una velocidad inicial que no hace que la sonda esté dentro del área objetivo después de cualquier paso 
+es 17, -4:
+
+S..............................................................
+...............................................................
+...............................................................
+...............................................................
+.................#.............................................
+....................TTTTTTTTTTT................................
+....................TTTTTTTTTTT................................
+....................TTTTTTTTTTT................................
+....................TTTTTTTTTTT................................
+....................TTTTTTTTTTT..#.............................
+....................TTTTTTTTTTT................................
+...............................................................
+...............................................................
+...............................................................
+...............................................................
+................................................#..............
+...............................................................
+...............................................................
+...............................................................
+...............................................................
+...............................................................
+...............................................................
+..............................................................#
+
+La sonda parece pasar a través del área objetivo, pero nunca está dentro de ella después de dar ningún paso. 
+En cambio, continúa hacia abajo y hacia la derecha; solo se muestran los primeros pasos.
+
+Si va a disparar una sonda altamente científica con un lanzador de sondas súper genial, también puede 
+hacerlo con estilo. ¿Qué altura puede alcanzar la sonda sin dejar de alcanzar el área objetivo?
+
+En el ejemplo anterior, usar una velocidad inicial de 6,9 es lo mejor que puede hacer, lo que hace que la 
+sonda alcance una posición y máxima de 45. (Cualquier velocidad y inicial más alta hace que la sonda 
+sobrepase el área objetivo por completo).
+
+Encuentre la velocidad inicial que hace que la sonda alcance la posición y más alta y, finalmente, 
+esté dentro del área objetivo después de cualquier paso. ¿Cuál es la posición y más alta que alcanza 
+en esta trayectoria?
+
+
+--- La segunda parte ---
+
+Quizás un truco elegante no sea la mejor idea; después de todo, solo tiene una sonda, por lo que es 
+mejor que no se pierda.
+
+Para tener una mejor idea de cuáles son sus opciones para lanzar la sonda, necesita encontrar cada velocidad 
+inicial que haga que la sonda finalmente esté dentro del área objetivo después de cualquier paso.
+
+En el ejemplo anterior, hay 112 valores de velocidad inicial diferentes que cumplen estos criterios:
+
+23,-10  25,-9   27,-5   29,-6   22,-6   21,-7   9,0     27,-7   24,-5
+25,-7   26,-6   25,-5   6,8     11,-2   20,-5   29,-10  6,3     28,-7
+8,0     30,-6   29,-8   20,-10  6,7     6,4     6,1     14,-4   21,-6
+26,-10  7,-1    7,7     8,-1    21,-9   6,2     20,-7   30,-10  14,-3
+20,-8   13,-2   7,3     28,-8   29,-9   15,-3   22,-5   26,-8   25,-8
+25,-6   15,-4   9,-2    15,-2   12,-2   28,-9   12,-3   24,-6   23,-7
+25,-10  7,8     11,-3   26,-7   7,1     23,-9   6,0     22,-10  27,-6
+8,1     22,-8   13,-4   7,6     28,-6   11,-4   12,-4   26,-9   7,4
+24,-10  23,-8   30,-8   7,0     9,-1    10,-1   26,-5   22,-9   6,5
+7,5     23,-6   28,-10  10,-2   11,-1   20,-9   14,-2   29,-7   13,-3
+23,-5   24,-8   27,-9   30,-7   28,-5   21,-10  7,9     6,6     21,-5
+27,-10  7,2     30,-9   21,-8   22,-7   24,-9   20,-6   6,9     29,-5
+8,-2    27,-8   30,-5   24,-7
+
+¿Cuántos valores de velocidad inicial distintos hacen que la sonda esté dentro del área objetivo 
+después de cualquier paso?

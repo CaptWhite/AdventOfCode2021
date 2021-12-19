@@ -1,0 +1,47 @@
+  6  4
+110100101111111000101000
+VVVTTTAAAAABBBBBCCCCC
+Debajo de cada bit hay una etiqueta que indica su propósito:
+
+Los tres bits etiquetados como V (110) son la versión del paquete, 6.
+Los tres bits etiquetados como T (100) son el ID del tipo de paquete, 4, lo que significa que el paquete es un valor literal.
+
+Los cinco bits etiquetados como A (10111) comienzan con un 1 (no es el último grupo, siga leyendo) y contienen los primeros cuatro bits del número, 0111.
+    1 - 0111   +  1 1110   +  0 0101   = 0111+1110+0101 = 011111100101 = 2021
+Los cinco bits etiquetados como B (11110) comienzan con un 1 (no es el último grupo, sigue leyendo) y contienen cuatro bits más del número, 1110.
+Los cinco bits etiquetados como C (00101) comienzan con un 0 (último grupo, final del paquete) y contienen los últimos cuatro bits del número, 0101.
+Los tres bits 0 sin etiquetar al final son adicionales debido a la representación hexadecimal y deben ignorarse.
+Entonces, este paquete representa un valor literal con representación binaria 011111100101, que es 2021 en decimal.
+
+
+              27      <------------(27)--------->
+--2--601<----(15)----><---(11)--><-----16------->
+00111000000000000110111101000101001010010001001000000000
+VVVTTTILLLLLLLLLLLLLLLAAAAAAAAAAABBBBBBBBBBBBBBBB
+
+Los tres bits etiquetados como V (001) son la versión del paquete, 1.
+Los tres bits etiquetados como T (110) son el ID del tipo de paquete, 6, lo que significa que el paquete es un operador.
+El bit etiquetado I (0) es el ID del tipo de longitud, lo que indica que la longitud es un número de 15 bits que representa el número de bits en los subpaquetes.
+Los 15 bits etiquetados como L (000000000011011) contienen la longitud de los subpaquetes en bits, 27.
+Los 11 bits etiquetados como A contienen el primer subpaquete, un valor literal que representa el número 10.
+Los 16 bits etiquetados como B contienen el segundo subpaquete, un valor literal que representa el número 20.
+
+
+
+// 100010100000000001 001010100000000001 1010100000000000 00101111010001111000"
+// V4-                V1                 V5                  
+// 100010100000000001 001010100000000001 1010100000000000 00101111010001111000
+// 100(V4) 010(OP) 1(PACK) 00000000001(1) 
+// 001(V1) 010(OP) 1(PACK) 00000000001(1)
+// 101(V5) 010(OP) 0(LONG) 000000000001011(11) 
+// 110(V6) 100(LI) 0-1111-000  --> 15
+------------------++++++++++++++++++++++-----------+++++++++++
+V3                v0                    V0         V5         V1                V0
+0110001000000000100000000000000000010110000100010101011000101100100010000000001000010001100 0111000110100"
+// 011(V3) 000(OP) 1(PACK) 00000000010(2)
+// 000(V0) 000(OP) 0(LONG) 000000000010110(22)   PACK1  lon=22+11+11
+// 000(V0) 100(LI) 0-1010
+// 101(V5) 100(LI) 0-1011 
+// 001(V1) 000(OP) 1(PACK) 00000000010           PACK2
+// 000(V0) 100(LI) 0-1100
+// 011(V3) 100(LI) 0-1101"   +00
