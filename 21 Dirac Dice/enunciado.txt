@@ -1,0 +1,75 @@
+--- Día 21: Dados de Dirac ---
+No hay mucho que hacer mientras desciendes lentamente hasta el fondo del océano. La computadora 
+del submarino te desafía a un buen juego de Dirac Dice.
+
+Este juego consta de un solo dado, dos peones y un tablero de juego con una pista circular 
+que contiene diez espacios marcados del 1 al 10 en el sentido de las agujas del reloj. 
+El espacio inicial de cada jugador se elige al azar (su entrada de rompecabezas). 
+El jugador 1 va primero.
+
+Los jugadores se turnan para moverse. En el turno de cada jugador, el jugador lanza el dado tres 
+veces y suma los resultados. Luego, el jugador mueve su peón tantas veces hacia adelante 
+alrededor de la pista (es decir, moviéndose en el sentido de las agujas del reloj en los 
+espacios en orden de valor creciente, volviendo a 1 después de 10). Entonces, si un jugador 
+está en el espacio 7 y lanza 2, 2 y 1, avanzaría 5 veces, a los espacios 8, 9, 10, 1 y 
+finalmente se detendría en el 2.
+
+Después de que cada jugador se mueve, aumenta su puntuación por el valor del espacio en el que
+se detuvo su peón. Los puntajes de los jugadores comienzan en 0. Entonces, si el primer jugador 
+comienza en el espacio 7 y saca un total de 5, se detendría en el espacio 2 y agregaría 2 a su 
+puntaje (para un puntaje total de 2). El juego termina inmediatamente como una victoria para 
+cualquier jugador cuya puntuación alcance al menos 1000.
+
+Dado que el primer juego es un juego de práctica, el submarino abre un compartimento etiquetado 
+como dado determinista y cae un dado de 100 caras. Este dado siempre lanza 1 primero, luego 2, 
+luego 3, y así sucesivamente hasta 100, después de lo cual comienza de nuevo en 1. Juega usando 
+este dado.
+
+Por ejemplo, dadas estas posiciones iniciales:
+
+Posición inicial del jugador 1: 4
+Posición inicial del jugador 2: 8
+Así es como iría el juego:
+
+El jugador 1 tira 1 + 2 + 3 y se mueve al espacio 10 para una puntuación total de 10.
+El jugador 2 saca 4 + 5 + 6 y se mueve al espacio 3 para una puntuación total de 3.
+El jugador 1 saca 7 + 8 + 9 y se mueve al espacio 4 para una puntuación total de 14.
+El jugador 2 saca 10 + 11 + 12 y se mueve al espacio 6 para una puntuación total de 9.
+El jugador 1 saca 13 + 14 + 15 y se mueve al espacio 6 para una puntuación total de 20.
+El jugador 2 saca 16 + 17 + 18 y se mueve al espacio 7 para una puntuación total de 16.
+El jugador 1 saca 19 + 20 + 21 y se mueve al espacio 6 para una puntuación total de 26.
+El jugador 2 saca 22 + 23 + 24 y se mueve al espacio 6 para una puntuación total de 22.
+... después de muchas vueltas ...
+
+El jugador 2 saca 82 + 83 + 84 y se mueve al espacio 6 para una puntuación total de 742.
+El jugador 1 saca 85 + 86 + 87 y se mueve al espacio 4 para una puntuación total de 990.
+El jugador 2 saca 88 + 89 + 90 y se mueve al espacio 3 para una puntuación total de 745.
+El jugador 1 saca 91 + 92 + 93 y se mueve al espacio 10 para una puntuación final, 1000.
+Dado que el jugador 1 tiene al menos 1000 puntos, el jugador 1 gana y el juego termina. 
+En este punto, el jugador perdedor tenía 745 puntos y el dado se había lanzado un total de 
+993 veces; 745 * 993 = 739785.
+
+Juega un juego de práctica con el dado determinista de 100 caras. En el momento en que cualquiera 
+de los jugadores gana, ¿qué obtienes si multiplicas la puntuación del jugador perdedor por el número 
+de veces que se lanzó el dado durante el juego?
+
+--- La segunda parte ---
+Ahora que estás calentado, es hora de jugar al juego real.
+
+Se abre un segundo compartimento, esta vez etiquetado como Dados de Dirac. De él cae un solo dado 
+de tres caras.
+
+A medida que experimentas con el dado, te sientes un poco extraño. Un folleto informativo en el 
+compartimento explica que se trata de un dado cuántico: cuando lo lanzas, el universo se divide en 
+varias copias, una copia para cada posible resultado del dado. En este caso, lanzar el dado siempre 
+divide el universo en tres copias: una en la que el resultado de la tirada fue 1, otra en la que 
+fue 2 y otra en la que fue 3.
+
+El juego se juega igual que antes, aunque para evitar que las cosas se salgan de las manos, el 
+juego ahora termina cuando la puntuación de cualquiera de los jugadores alcanza al menos 21.
+
+Usando las mismas posiciones iniciales que en el ejemplo anterior, el jugador 1 gana en 
+444356092776315 universos, mientras que el jugador 2 simplemente gana en 341960390180808 universos.
+
+Usando sus posiciones iniciales dadas, determine todos los resultados posibles. Encuentra el 
+jugador que gana en más universos; ¿En cuántos universos gana ese jugador?

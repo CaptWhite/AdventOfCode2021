@@ -5,7 +5,12 @@ pero si puede construir un mapa de la fosa utilizando los datos de los escánere
 llegar al fondo de manera segura.
 
 Las balizas y los escáneres flotan inmóviles en el agua; están diseñados para mantener la misma 
-posición durante largos períodos de tiempo. Cada escáner es capaz de detectar todas las balizas en un cubo grande centrado en el escáner; las balizas que están a un máximo de 1000 unidades del escáner en cada uno de los tres ejes (x, y, y z) tienen su posición precisa determinada en relación con el escáner. Sin embargo, los escáneres no pueden detectar otros escáneres. El submarino ha resumido automáticamente las posiciones relativas de las balizas detectadas por cada escáner (su entrada de rompecabezas).
+posición durante largos períodos de tiempo. Cada escáner es capaz de detectar todas las balizas 
+en un cubo grande centrado en el escáner; las balizas que están a un máximo de 1000 unidades del 
+escáner en cada uno de los tres ejes (x, y, y z) tienen su posición precisa determinada en 
+relación con el escáner. Sin embargo, los escáneres no pueden detectar otros escáneres. 
+El submarino ha resumido automáticamente las posiciones relativas de las balizas detectadas por 
+cada escáner (su entrada de rompecabezas).
 
 Por ejemplo, si un escáner está en las coordenadas x, y, z 500,0, -500 y hay balizas en -500, 
 1000, -1500 y 1501,0, -500, el escáner podría informar que la primera baliza está en -1000,1000, 
