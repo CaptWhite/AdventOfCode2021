@@ -1,0 +1,87 @@
+--- Día 24: Unidad Aritmética Lógica ---
+El humo mágico comienza a salir de la unidad aritmética lógica (ALU) del submarino. Sin la capacidad 
+de realizar funciones aritméticas y lógicas básicas, ¡el submarino no puede producir patrones geniales 
+con sus luces navideñas!
+
+Tampoco puede navegar. O haga funcionar el sistema de oxígeno.
+
+Sin embargo, no se preocupe: probablemente le quede suficiente oxígeno para tener tiempo suficiente 
+para construir una nueva ALU.
+
+La ALU es una unidad de procesamiento de cuatro dimensiones: tiene variables enteras w, x, y y z. 
+Todas estas variables comienzan con el valor 0. La ALU también admite seis instrucciones:
+
+inp a:   Lee un valor de entrada y lo escribe en la variable a.
+add a b: Suma el valor de a al valor de b, luego almacena el resultado en la variable a.
+mul a b: Multiplica el valor de a por el valor de b, luego almacena el resultado en la variable a.
+div a b: Divide el valor de a por el valor de b, trunca el resultado a un número entero y luego 
+         almacena el resultado en la variable a. (Aquí, "truncar" significa redondear el valor hacia cero).
+mod a b: Divide el valor de a por el valor de b, luego almacene el resto en la variable a. 
+         (Esto también se denomina operación de módulo).
+eql a b: Si los valores de a y b son iguales, entonces almacene el valor 1 en la variable a. 
+         De lo contrario, almacene el valor 0 en la variable a.
+
+En todas estas instrucciones, a y b son marcadores de posición; a siempre será la variable donde 
+se almacena el resultado de la operación (uno de w, x, yoz), mientras que b puede ser una variable o 
+un número. Los números pueden ser positivos o negativos, pero siempre serán números enteros.
+
+La ALU no tiene instrucciones de salto; en un programa ALU, cada instrucción se ejecuta exactamente
+una vez en orden de arriba hacia abajo. El programa se detiene después de que la última instrucción 
+ha terminado de ejecutarse.
+
+(Los autores del programa deben ser especialmente cautelosos; intentar ejecutar div con b = 0 o intentar 
+ejecutar mod con a <0 o b <= 0 hará que el programa se bloquee e incluso podría dañar la ALU. 
+Estas operaciones nunca están previstas en ningún programa ALU serio.)
+
+Por ejemplo, aquí hay un programa ALU que toma un número de entrada, lo niega y lo almacena en x:
+inp x
+mul x -1
+
+Aquí hay un programa ALU que toma dos números de entrada, luego establece z en 1 si el segundo número 
+de entrada es tres veces mayor que el primer número de entrada, o establece z en 0 en caso contrario:
+inp z
+inp x
+mul z 3
+eql z x
+
+Aquí hay un programa ALU que toma un entero no negativo como entrada, lo convierte en binario y almacena 
+el bit más bajo (1) en z, el segundo bit más bajo (2) en y, el tercer bit más bajo (4) en x, y el cuarto 
+bit más bajo (8) en w:
+inp w
+inp w
+add z w
+mod z 2
+div w 2
+add y w
+mod y 2
+div w 2
+add x w
+mod x 2
+div w 2
+mod w 2
+
+Una vez que haya construido una ALU de reemplazo, puede instalarla en el submarino, que inmediatamente 
+reanudará lo que estaba haciendo cuando falló la ALU: validar el número de modelo del submarino. 
+Para hacer esto, la ALU ejecutará el programa de Detector Automático de Número de Modelo 
+(MONAD, su entrada de rompecabezas).
+
+Los números de modelo de submarino son siempre números de catorce dígitos que constan únicamente de los 
+dígitos del 1 al 9. El dígito 0 no puede aparecer en un número de modelo.
+
+Cuando MONAD verifica un número de modelo hipotético de catorce dígitos, utiliza catorce instrucciones 
+INP separadas, cada una esperando un solo dígito del número de modelo en orden de mayor a menor importancia. 
+(Por lo tanto, para verificar el número de modelo 13579246899999, le daría 1 a la primera instrucción inp, 
+3 a la segunda instrucción inp, 5 a la tercera instrucción inp, y así sucesivamente). Esto significa que 
+al operar MONAD, cada instrucción de entrada debe Solo se le dará un valor entero de al menos 1 y como 
+máximo 9.
+
+Luego, después de que MONAD haya terminado de ejecutar todas sus instrucciones, indicará que el número 
+de modelo era válido dejando un 0 en la variable z. Sin embargo, si el número de modelo no es válido, 
+dejará algún otro valor distinto de cero en z.
+
+MONAD impone restricciones misteriosas adicionales sobre los números de modelo, y la leyenda dice que 
+la última copia de la documentación de MONAD fue devorada por un tanuki. 
+Deberá averiguar qué hace MONAD de otra manera.
+
+Para habilitar tantas funciones submarinas como sea posible, busque el número de modelo de catorce dígitos 
+válido más grande que no contenga 0 dígitos. ¿Cuál es el número de modelo más grande aceptado por MONAD?

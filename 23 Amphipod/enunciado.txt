@@ -1,0 +1,110 @@
+--- Día 23: Anfípodo ---
+
+Un grupo de anfípodos se fija en tu elegante submarino y te avisa. "Con un caparazón tan impresionante", dice un anfípodo, 
+"seguramente puede ayudarnos con una pregunta que ha dejado perplejos a nuestros mejores científicos".
+
+Continúan explicando que un grupo de anfípodos tímidos y obstinados viven en una madriguera cercana. Allí viven cuatro 
+tipos de anfípodos: ámbar (A), bronce (B), cobre (C) y desierto (D). Viven en una madriguera que consta de un pasillo 
+y cuatro habitaciones laterales. Las habitaciones laterales están inicialmente llenas de anfípodos y el pasillo está 
+inicialmente vacío.
+
+Le dan un diagrama de la situación (su entrada de rompecabezas), incluidas las ubicaciones de cada anfípodo 
+(A, B, C o D, cada uno de los cuales ocupa un espacio que de otro modo sería abierto), paredes (#) y espacio abierto (. ).
+
+Por ejemplo:
+#############
+#...........#
+###B#C#B#D###
+  #A#D#C#A#
+  #########
+
+A los anfípodos les gustaría un método para organizar cada anfípodo en habitaciones laterales de modo que cada habitación 
+lateral contenga un tipo de anfípodo y los tipos estén ordenados A-D yendo de izquierda a derecha, así:
+#############
+#...........#
+###A#B#C#D###
+  #A#B#C#D#
+  #########
+
+Los anfípodos pueden moverse hacia arriba, hacia abajo, hacia la izquierda o hacia la derecha siempre que se muevan hacia 
+un espacio abierto desocupado. Cada tipo de anfípodo requiere una cantidad diferente de energía para moverse un paso: los 
+anfípodos ámbar requieren 1 energía por paso, los anfípodos de bronce requieren 10 de energía, los anfípodos de cobre 
+requieren 100 y los del desierto requieren 1000. A los anfípodos les gustaría que encontraras una manera de organilos 
+que requiera la menor cantidad de energía total.
+
+Sin embargo, debido a que son tímidos y tercos, los anfípodos tienen algunas reglas adicionales:
+
+Los anfípodos nunca se detendrán en el espacio inmediatamente fuera de cualquier habitación. Pueden moverse a ese espacio 
+siempre que continúen moviéndose inmediatamente. (Específicamente, esto se refiere a los cuatro espacios abiertos en el 
+pasillo que están directamente encima de la posición inicial de un anfípodo).
+Los anfípodos nunca se moverán del pasillo a una habitación a menos que esa habitación sea su habitación de destino y esa 
+habitación no contenga anfípodos que no tengan esa habitación como su propio destino. Si la habitación de inicio de un 
+anfípodo no es su habitación de destino, puede permanecer en esa habitación hasta que salga de la habitación. (Por ejemplo, 
+un anfípodo ámbar no se moverá del pasillo a las tres habitaciones de la derecha, y solo se moverá a la habitación más a 
+la izquierda si esa habitación está vacía o si solo contiene otros anfípodos ámbar).
+
+Una vez que un anfípodo deja de moverse en el pasillo, permanecerá en ese lugar hasta que pueda moverse a una habitación. 
+(Es decir, una vez que un anfípodo comienza a moverse, cualquier otro anfípodo que se encuentre actualmente en el pasillo 
+se bloquea en su lugar y no se volverá a mover hasta que pueda entrar por completo en una habitación).
+En el ejemplo anterior, los anfípodos se pueden organizar utilizando un mínimo de 12521 energía. A continuación se muestra 
+una forma de hacerlo.
+
+Configuración inicial:
+#############
+#...........#
+###B#C#B#D###
+  #A#D#C#A#
+  #########
+
+  
+Un anfípodo de bronce se mueve hacia el pasillo, da 4 pasos y usa 40 de energía:
+#############
+#...B.......#
+###B#C#.#D###
+  #A#D#C#A#
+  #########
+  
+El único anfípodo de cobre que no está en su habitación lateral se mueve allí, dando 4 pasos y usando 400 de energía:
+#############
+#...B.......#
+###B#.#C#D###
+  #A#D#C#A#
+  #########
+  
+Un anfípodo del desierto se aparta, dando 3 pasos y usando 3000 de energía, y luego el anfípodo de bronce toma su lugar, 
+dando 3 pasos y usando 30 de energía:
+#############
+#.....D.....#
+###B#.#C#D###
+  #A#B#C#A#
+  #########
+  
+El anfípode de bronce más a la izquierda se mueve a su habitación usando 40 de energía:
+#############
+#.....D.....#
+###.#B#C#D###
+  #A#B#C#A#
+  #########
+  
+Ambos anfípodos en la habitación más a la derecha se mueven hacia el pasillo, usando energía de 2003 en total:
+#############
+#.....D.D.A.#
+###.#B#C#.###
+  #A#B#C#.#
+  #########
+  
+Ambos anfípodos del desierto se mueven a la habitación más a la derecha usando 7000 de energía:
+#############
+#.........A.#
+###.#B#C#D###
+  #A#B#C#D#
+  #########
+  
+Finalmente, el último anfípodo Amber se mueve a su habitación, usando 8 energías:
+#############
+#...........#
+###A#B#C#D###
+  #A#B#C#D#
+  #########
+  
+¿Cuál es la menor energía necesaria para organizar los anfípodos?
